@@ -4,11 +4,20 @@ import org.postgresql.jdbc2.optional.ConnectionPool;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class Db {
-    static ConnectionPool pool;
-    static ThreadLocal<Connection> connection = new ThreadLocal<>();
+/**
+ * Thread safe implementation of simple database ConnectionManager
+ */
+public class ConnectionManager {
+    private static ConnectionPool pool;
+    private static ThreadLocal<Connection> connection = new ThreadLocal<>();
 
-    static Connection getConnection(){
+    /**
+     * returns connection to database
+     */
+    public static Connection getConnection(){
+        if (pool == null)
+            initalizePool();
+
         if (connection.get() == null){
             try {
                 connection.set(pool.getConnection());
@@ -19,7 +28,10 @@ public class Db {
         return connection.get();
     }
 
-    static void close(){
+    /**
+     * Close connection
+     */
+    public static void close(){
         if (connection.get() != null){
             try {
                 connection.get().close();
@@ -30,6 +42,9 @@ public class Db {
         }
     }
 
+    /**
+     * Initialize ConnectionPool with database login information
+     */
     public static void initalizePool(){
         pool = new ConnectionPool();
         pool.setDatabaseName("db1");
@@ -38,8 +53,6 @@ public class Db {
         pool.setServerName("db.ii.fmph.uniba.sk");
         pool.setPortNumber(5432);
     }
-
-
 
 
 }

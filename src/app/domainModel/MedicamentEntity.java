@@ -4,7 +4,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Medicament {
+public class MedicamentEntity {
     @Id
     int medicamentId;
 

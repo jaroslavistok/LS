@@ -10,7 +10,7 @@ public class Managing {
         EntityManager em = Persistence.createEntityManagerFactory("NewPersistenceUnit").createEntityManager();
 
         em.getTransaction().begin();
-        Medicament medicament = new Medicament();
+        MedicamentEntity medicament = new MedicamentEntity();
         em.persist(medicament);
         em.getTransaction().commit();
 

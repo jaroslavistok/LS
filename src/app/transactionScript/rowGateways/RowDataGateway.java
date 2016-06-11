@@ -1,4 +1,4 @@
-package app.transactionScript;
+package app.transactionScript.rowGateways;
 
 public interface RowDataGateway {
     void insert();
