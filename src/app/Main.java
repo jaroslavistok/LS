@@ -1,16 +1,17 @@
 package app;
 
-import app.transactionScript.db.ConnectionManager;
+import app.dataMapper.Managing;
 import app.transactionScript.rowGateways.Medicament;
-import app.transactionScript.rowGateways.Recipe;
+import app.transactionScript.transactionScripts.CrudOperations;
 
 public class Main {
 
 
     public static void main(String[] args){
 
-        Medicament medicament = Medicament.findByID(2);
-        System.out.println(medicament.title);
+        Managing managing = new Managing();
+        managing.insert();
+
     }
 
 }

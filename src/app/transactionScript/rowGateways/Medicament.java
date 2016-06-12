@@ -2,19 +2,18 @@ package app.transactionScript.rowGateways;
 
 import app.transactionScript.db.ConnectionManager;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 /**
  * Represents row from table Medicament
  */
 public class Medicament implements RowDataGateway {
     public int medicamentID;
-    public int saleCategoryID;
+    public Integer saleCategoryID;
     public String title;
     public String batch;
     public String code;
+    public Date expiration;
     public int count;
 
 
@@ -41,6 +40,7 @@ public class Medicament implements RowDataGateway {
             medicament.batch = resultSet.getString("batch");
             medicament.code = resultSet.getString("code");
             medicament.count = resultSet.getInt("count");
+            medicament.expiration = resultSet.getDate("expiration");
 
             resultSet.close();
             ConnectionManager.close();
@@ -62,15 +62,20 @@ public class Medicament implements RowDataGateway {
     @Override
     public void insert() {
         try {
-            String sql = "INSERT INTO medicaments (title, batch, code, count, sale_category_id)" +
-                    "VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO medicaments (title, batch, code, count, " +
+                    "sale_category_id, expiration)" +
+                    "VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement =
                     ConnectionManager.getConnection().prepareStatement(sql);
             preparedStatement.setString(1, title);
             preparedStatement.setString(2, batch);
             preparedStatement.setString(3, code);
             preparedStatement.setInt(4, count);
-            preparedStatement.setInt(5, saleCategoryID);
+            if (saleCategoryID == null)
+                preparedStatement.setNull(5, Types.INTEGER);
+            else
+                preparedStatement.setInt(5, saleCategoryID);
+            preparedStatement.setDate(6, expiration);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -84,15 +89,19 @@ public class Medicament implements RowDataGateway {
     public void update() {
         try {
             String sql = "UPDATE medicaments SET title=?, batch=?, " +
-                    "code=?, count=?, sale_category_id=? WHERE medicament_id=?";
+                    "code=?, count=?, expiration=?, sale_category_id=? WHERE medicament_id=?";
             PreparedStatement preparedStatement =
                     ConnectionManager.getConnection().prepareStatement(sql);
             preparedStatement.setString(1, title);
             preparedStatement.setString(2, batch);
             preparedStatement.setString(3, code);
             preparedStatement.setInt(4, count);
-            preparedStatement.setInt(5, saleCategoryID);
-            preparedStatement.setInt(6, medicamentID);
+            preparedStatement.setDate(5, expiration);
+            if (saleCategoryID == null)
+                preparedStatement.setNull(6, Types.INTEGER);
+            else
+                preparedStatement.setInt(6, saleCategoryID);
+            preparedStatement.setInt(7, medicamentID);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

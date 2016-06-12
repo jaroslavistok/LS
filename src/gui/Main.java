@@ -1,6 +1,6 @@
 package gui;
 
-import app.domainModel.Managing;
+import app.dataMapper.Managing;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
