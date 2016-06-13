@@ -19,6 +19,8 @@ public class Managing {
         Lab lab = new Lab();
         SoldMedicament soldMedicament = new SoldMedicament();
         RecipeBatch recipeBatch = new RecipeBatch();
+        SaleCategory saleCategory= new SaleCategory();
+
         em.persist(medicament);
         em.persist(medicamentCategory);
         em.persist(price);
@@ -27,6 +29,7 @@ public class Managing {
         em.persist(lab);
         em.persist(soldMedicament);
         em.persist(recipeBatch);
+        em.persist(saleCategory);
 
         em.getTransaction().commit();
 

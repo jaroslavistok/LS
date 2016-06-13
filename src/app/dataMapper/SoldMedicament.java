@@ -5,6 +5,9 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.util.Collection;
 
+/**
+ * SoldMedicament class, maps sold_medicamnts table in database
+ */
 @Entity
 @Table(name = "sold_medicaments")
 public class SoldMedicament {

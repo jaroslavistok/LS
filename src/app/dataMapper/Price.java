@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+/**
+ * Price class, maps prices table in database
+ */
 @Entity
 @Table(name="prices")
 public class Price {
@@ -25,6 +28,7 @@ public class Price {
     public double discount;
 
     @OneToOne
+    @JoinColumn(name = "medicament_id")
     Medicament medicament;
 
 }

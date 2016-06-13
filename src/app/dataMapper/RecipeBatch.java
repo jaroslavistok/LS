@@ -4,6 +4,9 @@ package app.dataMapper;
 import javax.persistence.*;
 import java.util.Collection;
 
+/**
+ * RecipeBatch class, maps recipe_batches table in database
+ */
 @Entity
 @Table(name = "recipes_batches")
 public class RecipeBatch {

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="PostgreSQL - db1@db.ii.fmph.uniba.sk" uuid="33133421-3358-4b21-8a75-f8781333e041">
+      <secret-storage>master_key</secret-storage>
+      <user-name>istok7</user-name>
+    </data-source>
+  </component>
+</project>
