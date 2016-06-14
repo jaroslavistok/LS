@@ -9,7 +9,13 @@ import java.sql.*;
  */
 public class Medicament implements RowDataGateway {
     public int medicamentID;
-    public Integer saleCategoryID;
+
+    public Integer saleCategoryId;
+    public Integer soldMedicamentId;
+    public Integer labId;
+    public Integer storeId;
+
+
     public String title;
     public String batch;
     public String code;
@@ -35,7 +41,11 @@ public class Medicament implements RowDataGateway {
                 return null;
 
             medicament.medicamentID = resultSet.getInt("medicament_id");
-            medicament.saleCategoryID = resultSet.getInt("sale_category_id");
+            medicament.saleCategoryId = resultSet.getInt("sale_category_id");
+            medicament.soldMedicamentId = resultSet.getInt("sold_medicament_id");
+            medicament.labId = resultSet.getInt("lab_id");
+            medicament.storeId = resultSet.getInt("store_id");
+
             medicament.title = resultSet.getString("title");
             medicament.batch = resultSet.getString("batch");
             medicament.code = resultSet.getString("code");
@@ -63,19 +73,37 @@ public class Medicament implements RowDataGateway {
     public void insert() {
         try {
             String sql = "INSERT INTO medicaments (title, batch, code, count, " +
-                    "sale_category_id, expiration)" +
-                    "VALUES (?, ?, ?, ?, ?, ?)";
+                    "expiration, sale_category_id, lab_id, sold_medicament_id, store_id)" +
+                    "VALUES (?, ?, ?, ?, ?, ?,?,?,?)";
             PreparedStatement preparedStatement =
                     ConnectionManager.getConnection().prepareStatement(sql);
             preparedStatement.setString(1, title);
             preparedStatement.setString(2, batch);
             preparedStatement.setString(3, code);
             preparedStatement.setInt(4, count);
-            if (saleCategoryID == null)
-                preparedStatement.setNull(5, Types.INTEGER);
+            preparedStatement.setDate(5, expiration);
+
+            // foreign keys
+            if (saleCategoryId == null)
+                preparedStatement.setNull(6, Types.INTEGER);
             else
-                preparedStatement.setInt(5, saleCategoryID);
-            preparedStatement.setDate(6, expiration);
+                preparedStatement.setInt(6, saleCategoryId);
+
+            if (labId == null)
+                preparedStatement.setNull(7, Types.INTEGER);
+            else
+                preparedStatement.setInt(7, labId);
+
+            if (soldMedicamentId == null)
+                preparedStatement.setNull(8, Types.INTEGER);
+            else
+                preparedStatement.setInt(8, soldMedicamentId);
+
+            if (storeId == null)
+                preparedStatement.setNull(9, Types.INTEGER);
+            else
+                preparedStatement.setInt(9, storeId);
+
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -89,7 +117,7 @@ public class Medicament implements RowDataGateway {
     public void update() {
         try {
             String sql = "UPDATE medicaments SET title=?, batch=?, " +
-                    "code=?, count=?, expiration=?, sale_category_id=? WHERE medicament_id=?";
+                    "code=?, count=?, expiration=?, sale_category_id=?, lab_id=?, sold_medicament_id=?, store_id=? WHERE medicament_id=?";
             PreparedStatement preparedStatement =
                     ConnectionManager.getConnection().prepareStatement(sql);
             preparedStatement.setString(1, title);
@@ -97,11 +125,27 @@ public class Medicament implements RowDataGateway {
             preparedStatement.setString(3, code);
             preparedStatement.setInt(4, count);
             preparedStatement.setDate(5, expiration);
-            if (saleCategoryID == null)
+
+            // foreign keys
+            if (saleCategoryId == null)
                 preparedStatement.setNull(6, Types.INTEGER);
             else
-                preparedStatement.setInt(6, saleCategoryID);
-            preparedStatement.setInt(7, medicamentID);
+                preparedStatement.setInt(6, saleCategoryId);
+
+            if (labId == null)
+                preparedStatement.setNull(7, Types.INTEGER);
+            else
+                preparedStatement.setInt(7, labId);
+
+            if (soldMedicamentId == null)
+                preparedStatement.setNull(8, Types.INTEGER);
+            else
+                preparedStatement.setInt(8, soldMedicamentId);
+
+            if (storeId == null)
+                preparedStatement.setNull(9, Types.INTEGER);
+            else
+                preparedStatement.setInt(9, storeId);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

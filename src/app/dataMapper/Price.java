@@ -27,8 +27,9 @@ public class Price {
     public double dph;
     public double discount;
 
-    @OneToOne
-    @JoinColumn(name = "medicament_id")
-    Medicament medicament;
+    @Column(name = "selling_price")
+    public BigDecimal seelingPrice;
+
+
 
 }

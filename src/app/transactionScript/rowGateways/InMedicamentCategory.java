@@ -9,15 +9,15 @@ import java.sql.SQLException;
 /**
  * This class represent binding information for Medicament and medicaments categories
  */
-public class InCategoryBinding implements RowDataGateway {
+public class InMedicamentCategory implements RowDataGateway {
     public int medicament_category_id;
     public int medicament_id;
 
     /**
      * finds binding by category id
      */
-    public static InCategoryBinding findByCategoryID(int medicamentCategoryId){
-        InCategoryBinding inCategoryBinding = new InCategoryBinding();
+    public static InMedicamentCategory findByCategoryID(int medicamentCategoryId){
+        InMedicamentCategory inCategoryBinding = new InMedicamentCategory();
 
         String query = "SELECT * FROM in_medicament_category WHERE medicament_category_id=?";
         try {
@@ -45,8 +45,8 @@ public class InCategoryBinding implements RowDataGateway {
     /**
      * finds binding by medicament id
      */
-    public static InCategoryBinding findByMedicamentId(int medicamentID){
-        InCategoryBinding inCategoryBinding = new InCategoryBinding();
+    public static InMedicamentCategory findByMedicamentId(int medicamentID){
+        InMedicamentCategory inCategoryBinding = new InMedicamentCategory();
 
         String query = "SELECT * FROM in_medicament_category WHERE medicament_id=?";
         try {

@@ -16,8 +16,7 @@ public class Medicament {
     public String batch;
     public String title;
     public String code;
-    public int count;
-    public Date expiration;
+
 
 
     @ManyToMany
@@ -30,20 +29,17 @@ public class Medicament {
     public Collection<Recipe> recipes;
 
     @ManyToOne
-    public Store store;
-
-    @ManyToOne
-    public Lab lab;
-
-    @ManyToOne
-    @JoinColumn(name = "sold_medicament_id")
-    public SoldMedicament soldMedicament;
-
-    @ManyToOne
     @JoinColumn(name = "sale_category_id")
     public SaleCategory saleCategory;
 
 
+    @OneToOne
+    @JoinColumn(name="place_id")
+    Place place;
+
+    @OneToOne
+    @JoinColumn(name = "price_id")
+    Price price;
 
 
 }

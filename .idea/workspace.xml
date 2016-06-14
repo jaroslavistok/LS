@@ -2,18 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dataMapper/MedicamentInformation.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dataMapper/Place.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/transactionScript/rowGateways/MedicamentInformation.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/transactionScript/rowGateways/Place.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dataMapper/Lab.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dataMapper/SoldMedicament.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dataMapper/Store.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/transactionScript/rowGateways/MedicamentFromLab.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/transactionScript/rowGateways/MedicamentFromStore.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/transactionScript/rowGateways/SoldMedicament.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dataMapper/RecipeBatch.java" afterPath="$PROJECT_DIR$/src/app/dataMapper/RecipesBatch.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/transactionScript/rowGateways/InCategoryBinding.java" afterPath="$PROJECT_DIR$/src/app/transactionScript/rowGateways/InMedicamentCategory.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LS/META-INF/persistence.xml" afterPath="$PROJECT_DIR$/out/production/LS/META-INF/persistence.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/META-INF/persistence.xml" afterPath="$PROJECT_DIR$/src/META-INF/persistence.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dataMapper/Lab.java" afterPath="$PROJECT_DIR$/src/app/dataMapper/Lab.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dataMapper/Managing.java" afterPath="$PROJECT_DIR$/src/app/dataMapper/Managing.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dataMapper/Medicament.java" afterPath="$PROJECT_DIR$/src/app/dataMapper/Medicament.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dataMapper/MedicamentCategory.java" afterPath="$PROJECT_DIR$/src/app/dataMapper/MedicamentCategory.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dataMapper/Price.java" afterPath="$PROJECT_DIR$/src/app/dataMapper/Price.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dataMapper/Recipe.java" afterPath="$PROJECT_DIR$/src/app/dataMapper/Recipe.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dataMapper/RecipeBatch.java" afterPath="$PROJECT_DIR$/src/app/dataMapper/RecipeBatch.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dataMapper/SaleCategory.java" afterPath="$PROJECT_DIR$/src/app/dataMapper/SaleCategory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dataMapper/SoldMedicament.java" afterPath="$PROJECT_DIR$/src/app/dataMapper/SoldMedicament.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dataMapper/Store.java" afterPath="$PROJECT_DIR$/src/app/dataMapper/Store.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/transactionScript/rowGateways/Medicament.java" afterPath="$PROJECT_DIR$/src/app/transactionScript/rowGateways/Medicament.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/transactionScript/transactionScripts/CrudOperations.java" afterPath="$PROJECT_DIR$/src/app/transactionScript/transactionScripts/CrudOperations.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -78,6 +88,138 @@
         <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$GroupNode" />
       </PATH_ELEMENT>
     </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="PostgreSQL - db1@db.ii.fmph.uniba.sk" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="db1" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$GroupNode" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="sale_categories" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="PostgreSQL - db1@db.ii.fmph.uniba.sk" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="db1" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$GroupNode" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="recipes_batches" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="PostgreSQL - db1@db.ii.fmph.uniba.sk" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="db1" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$GroupNode" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="recipes" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="PostgreSQL - db1@db.ii.fmph.uniba.sk" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="db1" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$GroupNode" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="place" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="PostgreSQL - db1@db.ii.fmph.uniba.sk" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="db1" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$GroupNode" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="medicament_information" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="PostgreSQL - db1@db.ii.fmph.uniba.sk" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="db1" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$GroupNode" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="in_medicament_category" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
   </component>
   <component name="DebuggerManager">
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true" converted="true">
@@ -122,125 +264,13 @@
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="persistence.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/META-INF/persistence.xml">
+    <leaf>
+      <file leaf-file-name="MedicamentInformation.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/transactionScript/rowGateways/MedicamentInformation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
+            <state relative-caret-position="135">
+              <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Managing.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/dataMapper/Managing.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="31" column="31" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Medicament.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/transactionScript/rowGateways/Medicament.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1335">
-              <caret line="91" column="48" selection-start-line="91" selection-start-column="38" selection-end-line="91" selection-end-column="48" />
-              <folding>
-                <marker date="1465720406000" expanded="true" signature="737:784" ph="SELECT * FRO... medicaments" />
-                <marker date="1465720406000" expanded="true" signature="2022:2128" ph="INSERT INTO medicaments... " />
-                <marker date="1465720406000" expanded="true" signature="2022:2178" ph="INSERT INTO medicaments... " />
-                <marker date="1465720406000" expanded="true" signature="3039:3154" ph="UPDATE medic... " />
-                <marker date="1465720406000" expanded="true" signature="3039:3176" ph="UPDATE medic... " />
-                <marker date="1465720406000" expanded="true" signature="4095:4140" ph="DELETE FROM " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Recipe.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/dataMapper/Recipe.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="42" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Medicament.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/dataMapper/Medicament.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="23" column="45" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MedicamentCategory.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/dataMapper/MedicamentCategory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Price.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/dataMapper/Price.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RecipeBatch.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/dataMapper/RecipeBatch.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="40" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InCategoryBinding.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/transactionScript/rowGateways/InCategoryBinding.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="39" column="9" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
-              <folding>
-                <marker date="1465675172000" expanded="true" signature="640:707" ph="SELECT * FRO... medicaments" />
-                <marker date="1465675172000" expanded="true" signature="1627:1685" ph="SELECT * FRO... in_medicament_category" />
-                <marker date="1465675172000" expanded="true" signature="2631:2743" ph="INSERT INTO in_medicament_category... " />
-                <marker date="1465675172000" expanded="true" signature="3291:3366" ph="UPDATE in_me... " />
-                <marker date="1465675172000" expanded="true" signature="3291:3368" ph="UPDATE in_me... " />
-                <marker date="1465675172000" expanded="true" signature="3908:3993" ph="DELETE in_me... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SaleCategory.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/app/dataMapper/SaleCategory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -272,12 +302,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/33133421-3358-4b21-8a75-f8781333e041/console_5.sql" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/33133421-3358-4b21-8a75-f8781333e041/console_7.sql" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/33133421-3358-4b21-8a75-f8781333e041/console_8.sql" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/33133421-3358-4b21-8a75-f8781333e041/console_9.sql" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/33133421-3358-4b21-8a75-f8781333e041/console_10.sql" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/33133421-3358-4b21-8a75-f8781333e041/console_11.sql" />
         <option value="$PROJECT_DIR$/src/app/domainModel/MedicamentEntity.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/33133421-3358-4b21-8a75-f8781333e041/console_12.sql" />
         <option value="$PROJECT_DIR$/src/app/transactionScript/db/ConnectionManager.java" />
@@ -285,7 +309,6 @@
         <option value="$PROJECT_DIR$/src/app/transactionScript/rowGateways/Price.java" />
         <option value="$PROJECT_DIR$/src/app/transactionScript/rowGateways/Batch.java" />
         <option value="$PROJECT_DIR$/src/app/transactionScript/rowGateways/RecipesBatch.java" />
-        <option value="$PROJECT_DIR$/src/app/transactionScript/rowGateways/Lab.java" />
         <option value="$PROJECT_DIR$/src/app/transactionScript/rowGateways/ItemFromLab.java" />
         <option value="$PROJECT_DIR$/src/app/transactionScript/rowGateways/Store.java" />
         <option value="$PROJECT_DIR$/src/app/transactionScript/rowGateways/ItemFromStore.java" />
@@ -309,20 +332,27 @@
         <option value="$PROJECT_DIR$/src/app/domainModel/Recipe.java" />
         <option value="$PROJECT_DIR$/src/app/domainModel/RecipeBatch.java" />
         <option value="$PROJECT_DIR$/src/app/domainModel/Price.java" />
-        <option value="$PROJECT_DIR$/src/app/transactionScript/rowGateways/Medicament.java" />
-        <option value="$PROJECT_DIR$/src/app/transactionScript/transactionScripts/CrudOperations.java" />
         <option value="$PROJECT_DIR$/src/app/Main.java" />
-        <option value="$PROJECT_DIR$/src/app/dataMapper/Lab.java" />
-        <option value="$PROJECT_DIR$/src/app/dataMapper/RecipeBatch.java" />
         <option value="$PROJECT_DIR$/src/app/dataMapper/SoldMedicament.java" />
         <option value="$PROJECT_DIR$/src/app/dataMapper/Store.java" />
-        <option value="$PROJECT_DIR$/src/META-INF/persistence.xml" />
-        <option value="$PROJECT_DIR$/src/app/dataMapper/Managing.java" />
         <option value="$PROJECT_DIR$/src/app/dataMapper/SaleCategory.java" />
         <option value="$PROJECT_DIR$/src/app/dataMapper/MedicamentCategory.java" />
-        <option value="$PROJECT_DIR$/src/app/dataMapper/Medicament.java" />
-        <option value="$PROJECT_DIR$/src/app/dataMapper/Price.java" />
         <option value="$PROJECT_DIR$/src/app/dataMapper/Recipe.java" />
+        <option value="$PROJECT_DIR$/src/app/transactionScript/rowGateways/Medicament.java" />
+        <option value="$PROJECT_DIR$/src/app/dataMapper/Lab.java" />
+        <option value="$PROJECT_DIR$/src/app/transactionScript/rowGateways/MedicamentFromLab.java" />
+        <option value="$PROJECT_DIR$/src/app/transactionScript/transactionScripts/CrudOperations.java" />
+        <option value="$PROJECT_DIR$/src/app/transactionScript/rowGateways/Lab.java" />
+        <option value="$PROJECT_DIR$/src/app/dataMapper/MedicamentInformation.java" />
+        <option value="$PROJECT_DIR$/src/app/dataMapper/Place.java" />
+        <option value="$PROJECT_DIR$/src/META-INF/persistence.xml" />
+        <option value="$PROJECT_DIR$/src/app/dataMapper/Managing.java" />
+        <option value="$PROJECT_DIR$/src/app/dataMapper/Price.java" />
+        <option value="$PROJECT_DIR$/src/app/dataMapper/Medicament.java" />
+        <option value="$PROJECT_DIR$/src/app/dataMapper/RecipeBatch.java" />
+        <option value="$PROJECT_DIR$/src/app/dataMapper/RecipesBatch.java" />
+        <option value="$PROJECT_DIR$/src/app/transactionScript/rowGateways/Place.java" />
+        <option value="$PROJECT_DIR$/src/app/transactionScript/rowGateways/MedicamentInformation.java" />
       </list>
     </option>
   </component>
@@ -503,7 +533,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -674,8 +705,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1211,20 +1241,21 @@
       <workItem from="1465542795894" duration="155000" />
       <workItem from="1465545362190" duration="32802000" />
       <workItem from="1465721779237" duration="2139000" />
-      <workItem from="1465734901228" duration="8859000" />
+      <workItem from="1465734901228" duration="12160000" />
+      <workItem from="1465881036556" duration="3269000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52526000" />
+    <option name="totallyTimeSpent" value="59096000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-291" y="-1080" width="1920" height="1080" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3282532" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1237,7 +1268,8 @@
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1859375" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.203125" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30833334" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913843" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1254,42 +1286,7 @@
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32473624" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26494724" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2778429" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24791667" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -1311,48 +1308,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/33133421-3358-4b21-8a75-f8781333e041/console_3.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="29" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/33133421-3358-4b21-8a75-f8781333e041/console_5.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="58" selection-start-line="2" selection-start-column="58" selection-end-line="2" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/33133421-3358-4b21-8a75-f8781333e041/console_6.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/33133421-3358-4b21-8a75-f8781333e041/console_7.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="66" selection-start-line="5" selection-start-column="66" selection-end-line="5" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/33133421-3358-4b21-8a75-f8781333e041/console_9.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/33133421-3358-4b21-8a75-f8781333e041/console_8.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="54" selection-start-line="5" selection-start-column="54" selection-end-line="5" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/33133421-3358-4b21-8a75-f8781333e041/console_10.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -1383,22 +1338,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/transactionScript/rowGateways/MedicamentFromLab.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-135">
-          <caret line="40" column="20" selection-start-line="21" selection-start-column="8" selection-end-line="40" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <marker date="1465673428000" expanded="true" signature="644:683" ph="SELECT * FRO... lab" />
-            <marker date="1465673428000" expanded="true" signature="1578:1657" ph="INSERT INTO lab... " />
-            <marker date="1465673428000" expanded="true" signature="2197:2256" ph="UPDATE lab S... " />
-            <marker date="1465673428000" expanded="true" signature="2197:2268" ph="UPDATE lab S... " />
-            <marker date="1465673428000" expanded="true" signature="2776:2813" ph="DELETE FROM " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1413,27 +1352,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="351">
           <caret line="96" column="46" selection-start-line="96" selection-start-column="46" selection-end-line="96" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <marker date="1465673673000" expanded="true" signature="704:756" ph="SELECT * FRO... sold_medicaments" />
-            <marker date="1465673673000" expanded="true" signature="1658:1746" ph="INSERT INTO sold_medicaments... " />
-            <marker date="1465673673000" expanded="true" signature="2291:2371" ph="UPDATE sold_... " />
-            <marker date="1465673673000" expanded="true" signature="2912:2962" ph="DELETE FROM " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/transactionScript/rowGateways/MedicamentFromStore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="93" column="9" selection-start-line="85" selection-start-column="7" selection-end-line="93" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <marker date="1465673435000" expanded="true" signature="668:707" ph="SELECT * FRO... lab" />
-            <marker date="1465673435000" expanded="true" signature="1491:1572" ph="INSERT INTO store... " />
-            <marker date="1465673435000" expanded="true" signature="2112:2185" ph="UPDATE store... " />
-            <marker date="1465673435000" expanded="true" signature="2712:2751" ph="DELETE FROM " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1451,21 +1370,6 @@
             <marker date="1465667653000" expanded="true" signature="2631:2745" ph="UPDATE recip... " />
             <marker date="1465667653000" expanded="true" signature="3488:3507" ph="DELETE FROM " />
             <marker date="1465667653000" expanded="true" signature="3488:3525" ph="DELETE FROM " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/transactionScript/rowGateways/Price.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="50" column="20" selection-start-line="28" selection-start-column="8" selection-end-line="50" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <marker date="1465669898000" expanded="true" signature="745:782" ph="SELECT * FRO... prices" />
-            <marker date="1465669898000" expanded="true" signature="2018:2200" ph="INSERT INTO prices... " />
-            <marker date="1465669898000" expanded="true" signature="3027:3161" ph="UPDATE price... " />
-            <marker date="1465669898000" expanded="true" signature="3942:3977" ph="DELETE FROM " />
-            <marker date="1465669898000" expanded="true" signature="3942:3980" ph="DELETE FROM " />
           </folding>
         </state>
       </provider>
@@ -1552,16 +1456,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/transactionScript/transactionScripts/CrudOperations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/transactionScript/rowGateways/RowDataGateway.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -1601,18 +1495,10 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/dataMapper/SoldMedicaments.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dataMapper/SoldMedicaments.java" />
     <entry file="dbDummy://dbtable:/cbb22ce0/33133421-3358-4b21-8a75-f8781333e041/db1.istok7.in_medicament_category">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -1622,7 +1508,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1635,7 +1520,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1649,104 +1533,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/transactionScript/db/ConnectionManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/dataMapper/Lab.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/dataMapper/SoldMedicament.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="63" selection-start-line="8" selection-start-column="63" selection-end-line="8" selection-end-column="63" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/dataMapper/Store.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="44" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/transactionScript/rowGateways/MedicamentCategory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="75" column="50" selection-start-line="75" selection-start-column="50" selection-end-line="75" selection-end-column="50" />
-          <folding>
-            <marker date="1465674224000" expanded="true" signature="751:818" ph="SELECT * FRO... medicaments_categories" />
-            <marker date="1465674224000" expanded="true" signature="1787:1853" ph="INSERT INTO medicaments_categories... " />
-            <marker date="1465674224000" expanded="true" signature="1787:1891" ph="INSERT INTO medicaments_categories... " />
-            <marker date="1465674224000" expanded="true" signature="1787:1894" ph="INSERT INTO medicaments_categories... " />
-            <marker date="1465674224000" expanded="true" signature="2441:2563" ph="UPDATE medic... " />
-            <marker date="1465674224000" expanded="true" signature="3176:3210" ph="DELETE FROM " />
-            <marker date="1465674224000" expanded="true" signature="3176:3241" ph="DELETE FROM " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/META-INF/persistence.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/dataMapper/Managing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="31" column="31" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/transactionScript/rowGateways/Medicament.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1335">
-          <caret line="91" column="48" selection-start-line="91" selection-start-column="38" selection-end-line="91" selection-end-column="48" />
-          <folding>
-            <marker date="1465720406000" expanded="true" signature="737:784" ph="SELECT * FRO... medicaments" />
-            <marker date="1465720406000" expanded="true" signature="2022:2128" ph="INSERT INTO medicaments... " />
-            <marker date="1465720406000" expanded="true" signature="2022:2178" ph="INSERT INTO medicaments... " />
-            <marker date="1465720406000" expanded="true" signature="3039:3154" ph="UPDATE medic... " />
-            <marker date="1465720406000" expanded="true" signature="3039:3176" ph="UPDATE medic... " />
-            <marker date="1465720406000" expanded="true" signature="4095:4140" ph="DELETE FROM " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/transactionScript/rowGateways/InCategoryBinding.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="39" column="9" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
-          <folding>
-            <marker date="1465675172000" expanded="true" signature="640:707" ph="SELECT * FRO... medicaments" />
-            <marker date="1465675172000" expanded="true" signature="1627:1685" ph="SELECT * FRO... in_medicament_category" />
-            <marker date="1465675172000" expanded="true" signature="2631:2743" ph="INSERT INTO in_medicament_category... " />
-            <marker date="1465675172000" expanded="true" signature="3291:3366" ph="UPDATE in_me... " />
-            <marker date="1465675172000" expanded="true" signature="3291:3368" ph="UPDATE in_me... " />
-            <marker date="1465675172000" expanded="true" signature="3908:3993" ph="DELETE in_me... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1768,16 +1554,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/dataMapper/Price.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/dataMapper/Recipe.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -1788,32 +1564,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/dataMapper/RecipeBatch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="40" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/dataMapper/MedicamentCategory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/dataMapper/Medicament.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="23" column="45" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/dataMapper/SaleCategory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -1821,6 +1571,323 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/transactionScript/db/ConnectionManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="36" column="41" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
+          <folding>
+            <marker date="1465664876000" expanded="false" signature="41:145" ph="..." />
+            <marker date="1465664876000" expanded="true" signature="147:221" ph="/**...*/" />
+            <marker date="1465664876000" expanded="true" signature="377:426" ph="/**...*/" />
+            <marker date="1465664876000" expanded="true" signature="471:778" ph="{...}" />
+            <marker date="1465664876000" expanded="true" signature="784:819" ph="/**...*/" />
+            <marker date="1465664876000" expanded="true" signature="850:1090" ph="{...}" />
+            <marker date="1465664876000" expanded="true" signature="1096:1172" ph="/**...*/" />
+            <marker date="1465664876000" expanded="true" signature="1211:1448" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/transactionScript/rowGateways/Medicament.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="736">
+          <caret line="161" column="69" selection-start-line="161" selection-start-column="56" selection-end-line="161" selection-end-column="69" />
+          <folding>
+            <marker date="1465835880000" expanded="false" signature="51:114" ph="..." />
+            <marker date="1465835880000" expanded="true" signature="116:163" ph="/**...*/" />
+            <marker date="1465835880000" expanded="true" signature="504:697" ph="/**...*/" />
+            <marker date="1465835880000" expanded="true" signature="754:2040" ph="{...}" />
+            <marker date="1465835880000" expanded="true" signature="831:878" ph="SELECT * FRO... medicaments" />
+            <marker date="1465835880000" expanded="true" signature="2046:2239" ph="/**...*/" />
+            <marker date="1465835880000" expanded="true" signature="2279:3756" ph="{...}" />
+            <marker date="1465835880000" expanded="true" signature="2321:2465" ph="INSERT INTO medicaments... " />
+            <marker date="1465835880000" expanded="true" signature="2321:2521" ph="INSERT INTO medicaments... " />
+            <marker date="1465835880000" expanded="true" signature="3762:3842" ph="/**...*/" />
+            <marker date="1465835880000" expanded="true" signature="3882:5339" ph="{...}" />
+            <marker date="1465835880000" expanded="true" signature="3924:4039" ph="UPDATE medic... " />
+            <marker date="1465835880000" expanded="true" signature="3924:4105" ph="UPDATE medic... " />
+            <marker date="1465835880000" expanded="true" signature="5346:5428" ph="/**...*/" />
+            <marker date="1465835880000" expanded="true" signature="5468:5870" ph="{...}" />
+            <marker date="1465835880000" expanded="true" signature="5510:5555" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/transactionScript/rowGateways/InMedicamentCategory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+          <folding>
+            <marker date="1465884874000" expanded="false" signature="51:187" ph="..." />
+            <marker date="1465884874000" expanded="true" signature="189:282" ph="/**...*/" />
+            <marker date="1465884874000" expanded="true" signature="419:466" ph="/**...*/" />
+            <marker date="1465884874000" expanded="true" signature="548:1413" ph="{...}" />
+            <marker date="1465884874000" expanded="true" signature="652:719" ph="SELECT * FRO... medicaments" />
+            <marker date="1465884874000" expanded="true" signature="1419:1468" ph="/**...*/" />
+            <marker date="1465884874000" expanded="true" signature="1544:2390" ph="{...}" />
+            <marker date="1465884874000" expanded="true" signature="1648:1706" ph="SELECT * FRO... in_medicament_category" />
+            <marker date="1465884874000" expanded="true" signature="2396:2570" ph="/**...*/" />
+            <marker date="1465884874000" expanded="true" signature="2610:3145" ph="{...}" />
+            <marker date="1465884874000" expanded="true" signature="2652:2764" ph="INSERT INTO in_medicament_category... " />
+            <marker date="1465884874000" expanded="true" signature="3151:3230" ph="/**...*/" />
+            <marker date="1465884874000" expanded="true" signature="3270:3768" ph="{...}" />
+            <marker date="1465884874000" expanded="true" signature="3312:3387" ph="UPDATE in_me... " />
+            <marker date="1465884874000" expanded="true" signature="3312:3389" ph="UPDATE in_me... " />
+            <marker date="1465884874000" expanded="true" signature="3774:3847" ph="/**...*/" />
+            <marker date="1465884874000" expanded="true" signature="3887:4395" ph="{...}" />
+            <marker date="1465884874000" expanded="true" signature="3929:4014" ph="DELETE in_me... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dataMapper/Store.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="44" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/transactionScript/transactionScripts/CrudOperations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
+          <folding>
+            <marker date="1465836249000" expanded="false" signature="58:126" ph="..." />
+            <marker date="1465836249000" expanded="true" signature="212:300" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/transactionScript/rowGateways/MedicamentCategory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
+          <folding>
+            <marker date="1465674224000" expanded="false" signature="51:187" ph="..." />
+            <marker date="1465674224000" expanded="true" signature="189:264" ph="/**...*/" />
+            <marker date="1465674224000" expanded="true" signature="433:578" ph="/**...*/" />
+            <marker date="1465674224000" expanded="true" signature="650:1600" ph="{...}" />
+            <marker date="1465674224000" expanded="true" signature="751:818" ph="SELECT * FRO... medicaments_categories" />
+            <marker date="1465674224000" expanded="true" signature="1606:1705" ph="/**...*/" />
+            <marker date="1465674224000" expanded="true" signature="1745:2269" ph="{...}" />
+            <marker date="1465674224000" expanded="true" signature="1787:1853" ph="INSERT INTO medicaments_categories... " />
+            <marker date="1465674224000" expanded="true" signature="1787:1891" ph="INSERT INTO medicaments_categories... " />
+            <marker date="1465674224000" expanded="true" signature="1787:1894" ph="INSERT INTO medicaments_categories... " />
+            <marker date="1465674224000" expanded="true" signature="2275:2359" ph="/**...*/" />
+            <marker date="1465674224000" expanded="true" signature="2399:3004" ph="{...}" />
+            <marker date="1465674224000" expanded="true" signature="2441:2563" ph="UPDATE medic... " />
+            <marker date="1465674224000" expanded="true" signature="3010:3094" ph="/**...*/" />
+            <marker date="1465674224000" expanded="true" signature="3134:3564" ph="{...}" />
+            <marker date="1465674224000" expanded="true" signature="3176:3210" ph="DELETE FROM " />
+            <marker date="1465674224000" expanded="true" signature="3176:3241" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/transactionScript/rowGateways/MedicamentFromStore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="900">
+          <caret line="65" column="13" selection-start-line="65" selection-start-column="13" selection-end-line="65" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dataMapper/MedicamentCategory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
+          <folding>
+            <marker date="1465834017000" expanded="false" signature="32:81" ph="..." />
+            <marker date="1465834017000" expanded="true" signature="83:162" ph="/**...*/" />
+            <marker date="1465834017000" expanded="true" signature="163:208" ph="@{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dataMapper/SoldMedicament.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="7" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/transactionScript/rowGateways/Lab.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="56" column="13" selection-start-line="56" selection-start-column="13" selection-end-line="56" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dataMapper/Lab.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dataMapper/MedicamentInformation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
+          <folding>
+            <marker date="1465881897000" expanded="true" signature="32:74" ph="..." />
+            <marker date="1465881897000" expanded="true" signature="76:123" ph="@{...}" />
+            <marker date="1465881897000" expanded="true" signature="165:232" ph="@{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dataMapper/Place.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
+          <folding>
+            <marker date="1465881897000" expanded="true" signature="54:84" ph="@{...}" />
+            <marker date="1465881897000" expanded="true" signature="110:160" ph="@{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/META-INF/persistence.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="53" selection-start-line="13" selection-start-column="53" selection-end-line="13" selection-end-column="53" />
+          <folding>
+            <marker date="1465885061000" expanded="true" signature="112:1303" ph="..." />
+            <marker date="1465885061000" expanded="true" signature="162:1288" ph="..." />
+            <marker date="1465885061000" expanded="true" signature="736:1264" ph="..." />
+            <marker date="1465885061000" expanded="true" signature="1118:1242" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dataMapper/Managing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/cbb22ce0/33133421-3358-4b21-8a75-f8781333e041/db1.istok7.medicament_information">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dataMapper/Price.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="35" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="35" />
+          <folding>
+            <marker date="1465883225000" expanded="true" signature="32:110" ph="..." />
+            <marker date="1465883225000" expanded="true" signature="112:165" ph="/**...*/" />
+            <marker date="1465883225000" expanded="true" signature="166:195" ph="@{...}" />
+            <marker date="1465883225000" expanded="true" signature="221:271" ph="@{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dataMapper/Medicament.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding>
+            <marker date="1465883294000" expanded="false" signature="31:102" ph="..." />
+            <marker date="1465883294000" expanded="true" signature="104:166" ph="/**...*/" />
+            <marker date="1465883294000" expanded="true" signature="167:201" ph="@{...}" />
+            <marker date="1465883294000" expanded="true" signature="232:287" ph="@{...}" />
+            <marker date="1465883294000" expanded="true" signature="399:580" ph="@{...}" />
+            <marker date="1465883294000" expanded="true" signature="720:773" ph="@{...}" />
+            <marker date="1465883294000" expanded="true" signature="818:860" ph="@{...}" />
+            <marker date="1465883294000" expanded="true" signature="883:927" ph="@{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/cbb22ce0/33133421-3358-4b21-8a75-f8781333e041/db1.istok7.sale_categories">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dataMapper/RecipesBatch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+          <folding>
+            <marker date="1465885061000" expanded="false" signature="33:82" ph="..." />
+            <marker date="1465885061000" expanded="true" signature="84:152" ph="/**...*/" />
+            <marker date="1465885061000" expanded="true" signature="153:193" ph="@{...}" />
+            <marker date="1465885061000" expanded="true" signature="226:283" ph="@{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/transactionScript/rowGateways/Price.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding>
+            <marker date="1465669898000" expanded="false" signature="51:216" ph="..." />
+            <marker date="1465669898000" expanded="true" signature="218:261" ph="/**...*/" />
+            <marker date="1465669898000" expanded="true" signature="533:640" ph="/**...*/" />
+            <marker date="1465669898000" expanded="true" signature="686:1764" ph="{...}" />
+            <marker date="1465669898000" expanded="true" signature="745:782" ph="SELECT * FRO... prices" />
+            <marker date="1465669898000" expanded="true" signature="1770:1936" ph="/**...*/" />
+            <marker date="1465669898000" expanded="true" signature="1976:2861" ph="{...}" />
+            <marker date="1465669898000" expanded="true" signature="2018:2200" ph="INSERT INTO prices... " />
+            <marker date="1465669898000" expanded="true" signature="2867:2945" ph="/**...*/" />
+            <marker date="1465669898000" expanded="true" signature="2985:3772" ph="{...}" />
+            <marker date="1465669898000" expanded="true" signature="3027:3161" ph="UPDATE price... " />
+            <marker date="1465669898000" expanded="true" signature="3778:3860" ph="/**...*/" />
+            <marker date="1465669898000" expanded="true" signature="3900:4287" ph="{...}" />
+            <marker date="1465669898000" expanded="true" signature="3942:3977" ph="DELETE FROM " />
+            <marker date="1465669898000" expanded="true" signature="3942:3980" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/transactionScript/rowGateways/Place.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+          <folding>
+            <marker date="1465885144000" expanded="true" signature="188:198" ph=" { " />
+            <marker date="1465885144000" expanded="true" signature="210:216" ph=" }" />
+            <marker date="1465885144000" expanded="true" signature="257:265" ph="{...}" />
+            <marker date="1465885144000" expanded="true" signature="306:314" ph="{...}" />
+            <marker date="1465885144000" expanded="true" signature="355:363" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/transactionScript/rowGateways/MedicamentInformation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>

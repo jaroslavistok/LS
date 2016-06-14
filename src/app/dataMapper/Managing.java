@@ -15,20 +15,18 @@ public class Managing {
         MedicamentCategory medicamentCategory = new MedicamentCategory();
         Price price = new Price();
         Recipe recipe = new Recipe();
-        Store store = new Store();
-        Lab lab = new Lab();
-        SoldMedicament soldMedicament = new SoldMedicament();
-        RecipeBatch recipeBatch = new RecipeBatch();
+        RecipesBatch recipesBatch = new RecipesBatch();
         SaleCategory saleCategory= new SaleCategory();
+        Place place = new Place();
+        MedicamentInformation medicamentInformation = new MedicamentInformation();
 
+        em.persist(medicamentInformation);
+        em.persist(place);
         em.persist(medicament);
         em.persist(medicamentCategory);
         em.persist(price);
-        em.persist(store);
         em.persist(recipe);
-        em.persist(lab);
-        em.persist(soldMedicament);
-        em.persist(recipeBatch);
+        em.persist(recipesBatch);
         em.persist(saleCategory);
 
         em.getTransaction().commit();

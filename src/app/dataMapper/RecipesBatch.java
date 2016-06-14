@@ -5,11 +5,11 @@ import javax.persistence.*;
 import java.util.Collection;
 
 /**
- * RecipeBatch class, maps recipe_batches table in database
+ * RecipesBatch class, maps recipe_batches table in database
  */
 @Entity
 @Table(name = "recipes_batches")
-public class RecipeBatch {
+public class RecipesBatch {
     @Id @GeneratedValue
     @Column(name = "recipe_batch_id")
     public int recipeBatchId;
@@ -18,7 +18,7 @@ public class RecipeBatch {
     public String abbreviation;
     public int number;
 
-    @OneToMany(mappedBy = "recipeBatch")
+    @OneToMany(mappedBy = "recipesBatch")
     Collection<Recipe> recipes;
 
 }

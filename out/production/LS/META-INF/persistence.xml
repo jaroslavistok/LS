@@ -8,11 +8,10 @@
         <class>app.dataMapper.MedicamentCategory</class>
         <class>app.dataMapper.Recipe</class>
         <class>app.dataMapper.Price</class>
-        <class>app.dataMapper.Store</class>
-        <class>app.dataMapper.Lab</class>
-        <class>app.dataMapper.SoldMedicament</class>
-        <class>app.dataMapper.RecipeBatch</class>
+        <class>app.dataMapper.RecipesBatch</class>
         <class>app.dataMapper.SaleCategory</class>
+        <class>app.dataMapper.Place</class>
+        <class>app.dataMapper.MedicamentInformation</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://db.ii.fmph.uniba.sk:5432/db1"/>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>

@@ -2,7 +2,6 @@ package app.dataMapper;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.Collection;
 
 /**
  * Recipe class, maps recipes table in database
@@ -28,6 +27,6 @@ public class Recipe {
 
     @ManyToOne
     @JoinColumn(name="recipe_batch_id")
-    RecipeBatch recipeBatch;
+    RecipesBatch recipesBatch;
 
 }
