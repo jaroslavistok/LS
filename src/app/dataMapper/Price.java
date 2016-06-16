@@ -10,7 +10,7 @@ import java.math.BigInteger;
 @Entity
 @Table(name="prices")
 public class Price {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "price_id")
     public int priceId;
 
@@ -23,13 +23,13 @@ public class Price {
     @Column(name = "pharmacy_profit")
     public double pharmacyProfit;
 
+    @Column(name = "buyout_price")
+    public BigDecimal buyoutPrice;
+
     public BigDecimal patient;
     public double dph;
     public double discount;
 
     @Column(name = "selling_price")
     public BigDecimal seelingPrice;
-
-
-
 }

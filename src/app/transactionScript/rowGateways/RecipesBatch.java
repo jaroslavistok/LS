@@ -14,7 +14,6 @@ public class RecipesBatch implements RowDataGateway {
     public int recipeBatchId;
     public String abbreviation;
     public String title;
-    public int recipeID;
     public int number;
 
     /**
@@ -37,7 +36,6 @@ public class RecipesBatch implements RowDataGateway {
             recipesBatch.abbreviation = resultSet.getString("abbreviation");
             recipesBatch.number = resultSet.getInt("number");
             recipesBatch.title = resultSet.getString("title");
-            recipesBatch.recipeID = resultSet.getInt("recipe_id");
 
             resultSet.close();
             ConnectionManager.close();
@@ -57,14 +55,13 @@ public class RecipesBatch implements RowDataGateway {
     @Override
     public void insert() {
         try {
-            String sql = "INSERT INTO recipes_batches (title, abbreviation, number, recipe_id)" +
-                    "VALUES (?,?,?,?)";
+            String sql = "INSERT INTO recipes_batches (title, abbreviation, number)" +
+                    "VALUES (?,?,?)";
             PreparedStatement preparedStatement =
                     ConnectionManager.getConnection().prepareStatement(sql);
             preparedStatement.setString(1, title);
             preparedStatement.setString(2, abbreviation);
             preparedStatement.setInt(3, number);
-            preparedStatement.setInt(4, recipeID);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -78,14 +75,13 @@ public class RecipesBatch implements RowDataGateway {
     public void update() {
         try {
             String sql = "UPDATE recipes_batches SET title=?, " +
-                    "abbreviation=?, number=?, recipe_id=? WHERE recipe_batch_id=?";
+                    "abbreviation=?, number=? WHERE recipe_batch_id=?";
             PreparedStatement preparedStatement =
                     ConnectionManager.getConnection().prepareStatement(sql);
             preparedStatement.setString(1, title);
             preparedStatement.setString(2, abbreviation);
             preparedStatement.setInt(3, number);
-            preparedStatement.setInt(4, recipeID);
-            preparedStatement.setInt(5, recipeBatchId);
+            preparedStatement.setInt(4, recipeBatchId);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

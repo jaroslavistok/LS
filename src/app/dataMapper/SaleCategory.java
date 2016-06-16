@@ -9,7 +9,7 @@ import java.util.Collection;
 @Entity
 @Table(name = "sale_categories")
 public class SaleCategory {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sale_category_id")
     public int saleCategoryID;
 

@@ -12,7 +12,6 @@ import java.sql.SQLException;
  */
 public class Price implements RowDataGateway {
     public int priceID;
-    public int medicamentID;
     public BigDecimal purchasePrice;
     public double pharmacyProfit;
     public BigDecimal insurance_company;
@@ -35,7 +34,6 @@ public class Price implements RowDataGateway {
 
             price.priceID = resultSet.getInt("price_id");
             price.dph = resultSet.getDouble("dph");
-            price.medicamentID = resultSet.getInt("medicament_id");
             price.purchasePrice = resultSet.getBigDecimal("purchase_price");
             price.pharmacyProfit = resultSet.getDouble("pharmacy_profit");
             price.insurance_company = resultSet.getBigDecimal("insurance_company");
@@ -60,8 +58,8 @@ public class Price implements RowDataGateway {
     public void insert() {
         try {
             String sql = "INSERT INTO prices (price_id, purchase_price, pharmacy_profit, " +
-                    "insurance_company, patient, dph, medicament_id)" +
-                    "VALUES (?,?,?,?,?,?,?)";
+                    "insurance_company, patient, dph)" +
+                    "VALUES (?,?,?,?,?,?)";
             PreparedStatement preparedStatement =
                     ConnectionManager.getConnection().prepareStatement(sql);
             preparedStatement.setInt(1, priceID);
@@ -70,7 +68,6 @@ public class Price implements RowDataGateway {
             preparedStatement.setBigDecimal(4, insurance_company);
             preparedStatement.setBigDecimal(5, patient);
             preparedStatement.setDouble(6, dph);
-            preparedStatement.setInt(7, medicamentID);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -84,7 +81,7 @@ public class Price implements RowDataGateway {
     public void update() {
         try {
             String sql = "UPDATE prices SET purchase_price=?, pharmacy_profit=? " +
-                    ",insurance_company=?, patient=?, dph=?, medicament_id=?";
+                    ",insurance_company=?, patient=?, dph=?";
             PreparedStatement preparedStatement =
                     ConnectionManager.getConnection().prepareStatement(sql);
             preparedStatement.setBigDecimal(1, purchasePrice);
@@ -92,7 +89,6 @@ public class Price implements RowDataGateway {
             preparedStatement.setBigDecimal(3, insurance_company);
             preparedStatement.setBigDecimal(4, patient);
             preparedStatement.setDouble(5, dph);
-            preparedStatement.setInt(6, medicamentID);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

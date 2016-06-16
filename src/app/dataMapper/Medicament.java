@@ -9,15 +9,13 @@ import java.util.Collection;
 @Entity
 @Table(name="medicaments")
 public class Medicament {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "medicament_id")
     public int medicamentId;
 
     public String batch;
     public String title;
     public String code;
-
-
 
     @ManyToMany
     @JoinTable(name="in_medicament_category",
@@ -41,5 +39,14 @@ public class Medicament {
     @JoinColumn(name = "price_id")
     Price price;
 
+    public Medicament(){
+
+    }
+
+    public Medicament(String batch, String title, String code){
+        this.batch = batch;
+        this.title = title;
+        this.code = code;
+    }
 
 }

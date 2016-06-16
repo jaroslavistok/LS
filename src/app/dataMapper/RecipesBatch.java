@@ -10,7 +10,7 @@ import java.util.Collection;
 @Entity
 @Table(name = "recipes_batches")
 public class RecipesBatch {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "recipe_batch_id")
     public int recipeBatchId;
 

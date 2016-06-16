@@ -9,7 +9,7 @@ import java.util.Collection;
 @Entity
 @Table(name="medicaments_categories")
 public class MedicamentCategory {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int medicament_category_id;
 
     public String title;

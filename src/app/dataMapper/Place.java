@@ -3,9 +3,9 @@ package app.dataMapper;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "place")
+@Table(name = "places")
 public class Place {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "place_id")
     public int placeID;
 
