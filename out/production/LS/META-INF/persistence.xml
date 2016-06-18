@@ -10,7 +10,7 @@
         <class>app.dataMapper.Price</class>
         <class>app.dataMapper.RecipesBatch</class>
         <class>app.dataMapper.SaleCategory</class>
-        <class>app.dataMapper.Place</class>
+        <class>app.dataMapper.State</class>
         <class>app.dataMapper.MedicamentInformation</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://db.ii.fmph.uniba.sk:5432/db1"/>

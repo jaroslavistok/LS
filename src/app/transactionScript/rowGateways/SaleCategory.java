@@ -44,6 +44,32 @@ public class SaleCategory implements RowDataGateway {
         return null;
     }
 
+    public static SaleCategory findByName(String saleCategoryTitle){
+        SaleCategory saleCategory = new SaleCategory();
+        String sql = "SELECT * FROM sale_categories WHERE title=?";
+        try {
+            PreparedStatement statement = ConnectionManager.getConnection().prepareStatement(sql);
+            statement.setString(1, String.valueOf(saleCategoryTitle));
+            ResultSet resultSet = statement.executeQuery();
+            if (!resultSet.next())
+                return null;
+
+            saleCategory.title = resultSet.getString("title");
+            saleCategory.additionalInformation = resultSet.getString("additional_information");
+            saleCategory.saleCategoryID = resultSet.getInt("sale_category_id");
+
+            resultSet.close();
+            ConnectionManager.close();
+            return saleCategory;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+
     /**
      * Inserts new category represented by this class to he database
      */

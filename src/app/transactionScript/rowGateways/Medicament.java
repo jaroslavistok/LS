@@ -3,6 +3,8 @@ package app.transactionScript.rowGateways;
 import app.transactionScript.db.ConnectionManager;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents row from table Medicament
@@ -59,6 +61,26 @@ public class Medicament implements RowDataGateway {
             e.printStackTrace();
         }
 
+        return null;
+    }
+
+    /**
+     * Return array list of all medicaments
+     */
+    public static List<Medicament> getAllMedicaments(){
+        List<Medicament> medicaments = new ArrayList<>();
+        try{
+            String query = "SELECT * FROM medicaments";
+            PreparedStatement statement = ConnectionManager.getConnection().prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                Medicament newMedicament = Medicament.findByID(resultSet.getInt("medicament_id"));
+                medicaments.add(newMedicament);
+            }
+            return medicaments;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -127,4 +149,9 @@ public class Medicament implements RowDataGateway {
         }
     }
 
+
+    @Override
+    public String toString(){
+        return String.format("%s", title);
+    }
 }

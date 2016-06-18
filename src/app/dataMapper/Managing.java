@@ -17,11 +17,11 @@ public class Managing {
         Recipe recipe = new Recipe();
         RecipesBatch recipesBatch = new RecipesBatch();
         SaleCategory saleCategory= new SaleCategory();
-        Place place = new Place();
+        State state = new State();
         MedicamentInformation medicamentInformation = new MedicamentInformation();
 
         em.persist(medicamentInformation);
-        em.persist(place);
+        em.persist(state);
         em.persist(medicament);
         em.persist(medicamentCategory);
         em.persist(price);

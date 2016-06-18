@@ -49,6 +49,20 @@ public class Price implements RowDataGateway {
         return null;
     }
 
+    public static double getTotalValueOfAllMedicaments(){
+        try{
+            String sql = "SELECT sum(buyout_price) FROM prices";
+            PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next())
+                return resultSet.getInt(1);
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     /**
      * Inserts row represented by this class to the database
      *

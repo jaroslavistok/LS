@@ -1,6 +1,6 @@
 package app.domainModel;
 
-import app.dataMapper.Place;
+import app.dataMapper.State;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -12,9 +12,9 @@ public class DatabaseFiller {
 
         em.getTransaction().begin();
 
-        Place laboratory = new Place();
+        State laboratory = new State();
         laboratory.title = "laboratory";
-        Place warehouse = new Place();
+        State warehouse = new State();
         warehouse.title = "warehouse";
 
         em.persist(laboratory);

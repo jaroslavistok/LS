@@ -35,6 +35,29 @@ public class Place implements RowDataGateway {
         return null;
     }
 
+    public static Place findByTitle(String placeTitle){
+        Place place = new Place();
+
+        String query = "SELECT * FROM places WHERE title=?";
+        try {
+            PreparedStatement statement = ConnectionManager.getConnection().prepareStatement(query);
+            statement.setString(1, placeTitle);
+            ResultSet resultSet = statement.executeQuery();
+            if (!resultSet.next())
+                return null;
+
+            place.placeID = resultSet.getInt("place_id");
+            place.title = resultSet.getString("title");
+
+            resultSet.close();
+            ConnectionManager.close();
+            return place;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     @Override
     public void insert() {
         try {

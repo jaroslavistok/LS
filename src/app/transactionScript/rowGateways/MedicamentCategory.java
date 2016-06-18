@@ -44,6 +44,31 @@ public class MedicamentCategory implements RowDataGateway {
         return null;
     }
 
+    public static MedicamentCategory findByTitle(String title){
+        MedicamentCategory medicamentCategory = new MedicamentCategory();
+
+        String query = "SELECT * FROM medicaments_categories WHERE title=?";
+        try {
+            PreparedStatement statement = ConnectionManager.getConnection().prepareStatement(query);
+            statement.setString(1, title);
+            ResultSet resultSet = statement.executeQuery();
+            if (!resultSet.next())
+                return null;
+
+            medicamentCategory.medicamentCategoryID = resultSet.getInt("medicament_category_id");
+            medicamentCategory.title = resultSet.getString("title");
+            medicamentCategory.additionalInformation = resultSet.getString("additional_information");
+            resultSet.close();
+            ConnectionManager.close();
+            return medicamentCategory;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     /**
      * Inserts new medicament category represented by this class to the
      * database

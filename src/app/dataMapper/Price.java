@@ -32,4 +32,6 @@ public class Price {
 
     @Column(name = "selling_price")
     public BigDecimal seelingPrice;
+
+
 }

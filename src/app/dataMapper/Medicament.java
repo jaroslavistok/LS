@@ -1,6 +1,5 @@
 package app.dataMapper;
 import javax.persistence.*;
-import java.sql.Date;
 import java.util.Collection;
 
 /**
@@ -33,11 +32,13 @@ public class Medicament {
 
     @OneToOne
     @JoinColumn(name="place_id")
-    Place place;
+    State state;
 
     @OneToOne
     @JoinColumn(name = "price_id")
     Price price;
+
+
 
     public Medicament(){
 
