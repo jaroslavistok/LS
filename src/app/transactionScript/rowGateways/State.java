@@ -7,13 +7,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Place implements RowDataGateway {
+public class State implements RowDataGateway {
 
     public int placeID;
     public String title;
 
-    public static Place findById(int placeId){
-        Place place = new Place();
+    public static State findById(int placeId){
+        State place = new State();
 
         String query = "SELECT * FROM places WHERE place_id=?";
         try {
@@ -35,8 +35,8 @@ public class Place implements RowDataGateway {
         return null;
     }
 
-    public static Place findByTitle(String placeTitle){
-        Place place = new Place();
+    public static State findByTitle(String placeTitle){
+        State place = new State();
 
         String query = "SELECT * FROM places WHERE title=?";
         try {

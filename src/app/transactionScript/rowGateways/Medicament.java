@@ -15,8 +15,9 @@ public class Medicament implements RowDataGateway {
 
     //foreign keys
     public Integer saleCategoryId;
-    public int placeID;
+    public int stateID;
     public int priceID;
+    public int medicamentInformationID;
 
 
     //other columns
@@ -46,8 +47,9 @@ public class Medicament implements RowDataGateway {
 
             medicament.medicamentID = resultSet.getInt("medicament_id");
             medicament.saleCategoryId = resultSet.getInt("sale_category_id");
-            medicament.placeID = resultSet.getInt("place_id");
+            medicament.stateID = resultSet.getInt("place_id");
             medicament.priceID = resultSet.getInt("price_id");
+            medicament.medicamentInformationID = resultSet.getInt("medicament_information_id");
 
             medicament.title = resultSet.getString("title");
             medicament.batch = resultSet.getString("batch");
@@ -94,8 +96,8 @@ public class Medicament implements RowDataGateway {
     public void insert() {
         try {
             String sql = "INSERT INTO medicaments (title, batch, code," +
-                    "sale_category_id, price_id, place_id)" +
-                    "VALUES (?, ?, ?, ?, ?, ?)";
+                    "sale_category_id, price_id, place_id, medicament_information_id)" +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement =
                     ConnectionManager.getConnection().prepareStatement(sql);
             preparedStatement.setString(1, title);
@@ -103,7 +105,24 @@ public class Medicament implements RowDataGateway {
             preparedStatement.setString(3, code);
             preparedStatement.setInt(4, saleCategoryId);
             preparedStatement.setInt(5, priceID);
-            preparedStatement.setInt(6, placeID);
+            preparedStatement.setInt(6, stateID);
+            preparedStatement.setInt(7, medicamentInformationID);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void insertWithoutForeignKeys() {
+        try {
+            String sql = "INSERT INTO medicaments (title, batch, code)" +
+                    "VALUES (?, ?, ?)";
+            PreparedStatement preparedStatement =
+                    ConnectionManager.getConnection().prepareStatement(sql);
+            preparedStatement.setString(1, title);
+            preparedStatement.setString(2, batch);
+            preparedStatement.setString(3, code);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -117,7 +136,7 @@ public class Medicament implements RowDataGateway {
     public void update() {
         try {
             String sql = "UPDATE medicaments SET title=?, batch=?, " +
-                    "code=?, sale_category_id=?, price_id=?, place_id=? WHERE medicament_id=?";
+                    "code=?, sale_category_id=?, price_id=?, place_id=?, medicament_information_id=? WHERE medicament_id=?";
             PreparedStatement preparedStatement =
                     ConnectionManager.getConnection().prepareStatement(sql);
             preparedStatement.setString(1, title);
@@ -125,7 +144,8 @@ public class Medicament implements RowDataGateway {
             preparedStatement.setString(3, code);
             preparedStatement.setInt(4, saleCategoryId);
             preparedStatement.setInt(5, priceID);
-            preparedStatement.setInt(6, placeID);
+            preparedStatement.setInt(6, stateID);
+            preparedStatement.setInt(7, medicamentInformationID);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

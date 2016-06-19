@@ -2,15 +2,11 @@ package app;
 
 import app.dataMapper.Managing;
 import app.dataMapper.MedicamentInformation;
-import app.domainModel.DatabaseFiller;
-import app.transactionScript.db.ConnectionManager;
-import app.transactionScript.rowGateways.Medicament;
 import app.transactionScript.rowGateways.MedicamentCategory;
+import app.transactionScript.rowGateways.Price;
 import app.transactionScript.rowGateways.SaleCategory;
-import app.transactionScript.transactionScripts.CrudOperations;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.math.BigDecimal;
 
 public class Main {
 
@@ -18,26 +14,33 @@ public class Main {
     public static void main(String[] args){
 
 
+        Price price = new Price();
+        price.patient = BigDecimal.valueOf(200);
+        price.insert();
+        price.insert();
+        System.out.println(price.lastInsertedPriceID);
+
         Managing managing = new Managing();
         managing.insert();
 
+        /*
         try {
-            /*
+
             ConnectionManager.getConnection().setAutoCommit(false);
-            CrudOperations.addNewSaleCategory("volnopredajne", "Lieky predajne bez receptu");
-            CrudOperations.addNewSaleCategory("na_recept", "Lieky predajne iba na recept");
-            CrudOperations.addNewSaleCategory("nepredajne", "lieky po expiracnej dobe, alebo inym sposobom vyradene lieky");
+            Selects.addNewSaleCategory("volnopredajne", "Lieky predajne bez receptu");
+            Selects.addNewSaleCategory("na_recept", "Lieky predajne iba na recept");
+            Selects.addNewSaleCategory("nepredajne", "lieky po expiracnej dobe, alebo inym sposobom vyradene lieky");
 
-            CrudOperations.addNewMedicamentCategory("antibiotika", "Antibiotika");
-            CrudOperations.addNewMedicamentCategory("vitaminy", "Vitaminy");
-            CrudOperations.addNewMedicamentCategory("opiatika", "Opiaty");
-            CrudOperations.addNewMedicamentCategory("vyzivove doplnky", "doplnky");
-            CrudOperations.addNewMedicamentCategory("suroviny", "suroviny");
+            Selects.addNewMedicamentCategory("antibiotika", "Antibiotika");
+            Selects.addNewMedicamentCategory("vitaminy", "Vitaminy");
+            Selects.addNewMedicamentCategory("opiatika", "Opiaty");
+            Selects.addNewMedicamentCategory("vyzivove doplnky", "doplnky");
+            Selects.addNewMedicamentCategory("suroviny", "suroviny");
 
 
-            CrudOperations.addNewPlace("sklad");
-            CrudOperations.addNewPlace("laboratorium");
-*/
+            Selects.addNewPlace("sklad");
+            Selects.addNewPlace("laboratorium");
+
             SaleCategory saleCategory = SaleCategory.findByName("predajny");
             System.out.println(saleCategory.additionalInformation);
 
@@ -47,12 +50,13 @@ public class Main {
             MedicamentInformation medicamentInformation = new MedicamentInformation();
 
 
-            //CrudOperations.addNewMedicament("123", "code", "title");
+            //Selects.addNewMedicament("123", "code", "title");
 
             //ConnectionManager.getConnection().commit();
         } catch (Exception e){
             e.printStackTrace();
         }
+        */
 
 
     }

@@ -31,12 +31,16 @@ public class Medicament {
 
 
     @OneToOne
-    @JoinColumn(name="place_id")
+    @JoinColumn(name="state_id")
     State state;
 
     @OneToOne
     @JoinColumn(name = "price_id")
     Price price;
+
+    @OneToOne
+    @JoinColumn(name= "medicament_information_id")
+    MedicamentInformation medicamentInformation;
 
 
 

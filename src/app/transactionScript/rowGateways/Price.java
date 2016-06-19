@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * Represents row from table prices
@@ -17,6 +18,8 @@ public class Price implements RowDataGateway {
     public BigDecimal insurance_company;
     public BigDecimal patient;
     public double dph;
+
+    public int lastInsertedPriceID;
 
     /**
      * finds row in table prices by given id
@@ -71,18 +74,22 @@ public class Price implements RowDataGateway {
     @Override
     public void insert() {
         try {
-            String sql = "INSERT INTO prices (price_id, purchase_price, pharmacy_profit, " +
+            String sql = "INSERT INTO prices (purchase_price, pharmacy_profit, " +
                     "insurance_company, patient, dph)" +
-                    "VALUES (?,?,?,?,?,?)";
+                    "VALUES (?,?,?,?,?)";
             PreparedStatement preparedStatement =
-                    ConnectionManager.getConnection().prepareStatement(sql);
-            preparedStatement.setInt(1, priceID);
-            preparedStatement.setBigDecimal(2, purchasePrice);
-            preparedStatement.setDouble(3, pharmacyProfit);
-            preparedStatement.setBigDecimal(4, insurance_company);
-            preparedStatement.setBigDecimal(5, patient);
-            preparedStatement.setDouble(6, dph);
+                    ConnectionManager.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setBigDecimal(1, purchasePrice);
+            preparedStatement.setDouble(2, pharmacyProfit);
+            preparedStatement.setBigDecimal(3, insurance_company);
+            preparedStatement.setBigDecimal(4, patient);
+            preparedStatement.setDouble(5, dph);
+
             preparedStatement.executeUpdate();
+
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            while (resultSet.next())
+                lastInsertedPriceID = resultSet.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
