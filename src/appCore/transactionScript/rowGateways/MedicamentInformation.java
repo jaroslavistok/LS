@@ -2,10 +2,7 @@ package appCore.transactionScript.rowGateways;
 
 import appCore.transactionScript.db.ConnectionManager;
 
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class MedicamentInformation implements RowDataGateway{
 
@@ -13,6 +10,7 @@ public class MedicamentInformation implements RowDataGateway{
     public Date added;
     public Date expiration;
     public Date sold;
+    public int lastInsertedID;
 
     public static MedicamentInformation findByID(int medicamentInformationID) {
         MedicamentInformation medicamentInformation = new MedicamentInformation();
@@ -48,11 +46,16 @@ public class MedicamentInformation implements RowDataGateway{
             String sql = "INSERT INTO medicament_information (added, expiration, sold)" +
                     "VALUES (?, ?, ?)";
             PreparedStatement preparedStatement =
-                    ConnectionManager.getConnection().prepareStatement(sql);
+                    ConnectionManager.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setDate(1, added);
             preparedStatement.setDate(2, expiration);
             preparedStatement.setDate(3, sold);
             preparedStatement.executeUpdate();
+
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            while (resultSet.next()){
+                medicamentInformationID = resultSet.getInt(1);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

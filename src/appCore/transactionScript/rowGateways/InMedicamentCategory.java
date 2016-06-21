@@ -95,7 +95,7 @@ public class InMedicamentCategory implements RowDataGateway {
     @Override
     public void update() {
         try {
-            String sql = "UPDATE in_medicament_category SET medicament_category_id=?, medicament_id=?";
+            String sql = "UPDATE in_medicament_category SET medicament_category_id=? WHERE medicament_id=?";
             PreparedStatement preparedStatement =
                     ConnectionManager.getConnection().prepareStatement(sql);
             preparedStatement.setInt(1, medicament_category_id);

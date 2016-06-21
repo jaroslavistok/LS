@@ -23,6 +23,7 @@ public class Price implements RowDataGateway {
 
     public int lastInsertedPriceID;
 
+
     /**
      * finds row in table prices by given id
      * returns new object that represents this row
@@ -32,7 +33,7 @@ public class Price implements RowDataGateway {
         String sql = "SELECT * FROM prices WHERE price_id=?";
         try {
             PreparedStatement statement = ConnectionManager.getConnection().prepareStatement(sql);
-            statement.setString(1, String.valueOf(priceID));
+            statement.setInt(1, priceID);
             ResultSet resultSet = statement.executeQuery();
             if (!resultSet.next())
                 return null;
@@ -40,6 +41,7 @@ public class Price implements RowDataGateway {
             price.priceID = resultSet.getInt("price_id");
             price.dph = resultSet.getDouble("dph");
             price.buyoutPrice = resultSet.getBigDecimal("purchase_price");
+            price.sellingPrice = resultSet.getBigDecimal("selling_price");
             price.pharmacyProfit = resultSet.getDouble("pharmacy_profit");
             price.insurance_company = resultSet.getBigDecimal("insurance_company");
             price.patient = resultSet.getBigDecimal("patient");
@@ -91,7 +93,7 @@ public class Price implements RowDataGateway {
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             while (resultSet.next())
-                lastInsertedPriceID = resultSet.getInt(1);
+                priceID = resultSet.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -105,8 +107,10 @@ public class Price implements RowDataGateway {
         try {
             String sql = "UPDATE prices SET purchase_price=?, pharmacy_profit=? " +
                     ",insurance_company=?, patient=?, dph=?";
+            String sql1 = "SELECT count(*) FILTER (WHERE login_date >= ? AND login_date <= ?) AS number FROM persons";
             PreparedStatement preparedStatement =
                     ConnectionManager.getConnection().prepareStatement(sql);
+
             preparedStatement.setBigDecimal(1, buyoutPrice);
             preparedStatement.setDouble(2, pharmacyProfit);
             preparedStatement.setBigDecimal(3, insurance_company);

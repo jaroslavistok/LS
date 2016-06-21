@@ -25,9 +25,6 @@ public class Medicament implements RowDataGateway {
     public String batch;
     public String code;
 
-
-
-
     /**
      * Factory method
      * Finds medicament in medicaments table by its ID
@@ -54,6 +51,9 @@ public class Medicament implements RowDataGateway {
             medicament.title = resultSet.getString("title");
             medicament.batch = resultSet.getString("batch");
             medicament.code = resultSet.getString("code");
+
+
+
 
             resultSet.close();
             ConnectionManager.close();
@@ -133,10 +133,10 @@ public class Medicament implements RowDataGateway {
     public void insert() {
         try {
             String sql = "INSERT INTO medicaments (title, batch, code," +
-                    "sale_category_id, price_id, place_id, medicament_information_id)" +
+                    "sale_category_id, price_id, state_id, medicament_information_id)" +
                     "VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement =
-                    ConnectionManager.getConnection().prepareStatement(sql);
+                    ConnectionManager.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, title);
             preparedStatement.setString(2, batch);
             preparedStatement.setString(3, code);
@@ -144,7 +144,15 @@ public class Medicament implements RowDataGateway {
             preparedStatement.setInt(5, priceID);
             preparedStatement.setInt(6, stateID);
             preparedStatement.setInt(7, medicamentInformationID);
+
+
             preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            while (resultSet.next()){
+                medicamentID = resultSet.getInt(1);
+            }
+
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -173,7 +181,7 @@ public class Medicament implements RowDataGateway {
     public void update() {
         try {
             String sql = "UPDATE medicaments SET title=?, batch=?, " +
-                    "code=?, sale_category_id=?, price_id=?, place_id=?, medicament_information_id=? WHERE medicament_id=?";
+                    "code=?, sale_category_id=?, price_id=?, state_id=?, medicament_information_id=? WHERE medicament_id=?";
             PreparedStatement preparedStatement =
                     ConnectionManager.getConnection().prepareStatement(sql);
             preparedStatement.setString(1, title);
@@ -183,6 +191,7 @@ public class Medicament implements RowDataGateway {
             preparedStatement.setInt(5, priceID);
             preparedStatement.setInt(6, stateID);
             preparedStatement.setInt(7, medicamentInformationID);
+            preparedStatement.setInt(8, medicamentID);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

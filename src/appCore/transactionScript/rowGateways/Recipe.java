@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -17,6 +19,32 @@ public class Recipe implements RowDataGateway {
     public int cashRegisterNumber;
     public int number;
     public int medicamentID;
+    public String type;
+
+
+    public static List<Recipe> getAllRecipes(){
+        List<Recipe> recipes = new ArrayList<>();
+        String query = "SELECT * FROM recipes";
+
+        try {
+            PreparedStatement statement = ConnectionManager.getConnection().prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                Recipe recipe = new Recipe();
+                recipe.recipeID = resultSet.getInt("recipe_id");
+                recipe.cashRegisterNumber = resultSet.getInt("cash_register_number");
+                recipe.date = resultSet.getDate("date");
+                recipe.number = resultSet.getInt("number");
+                recipe.type = resultSet.getString("type");
+                recipes.add(recipe);
+            }
+
+            return recipes;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
     /**
@@ -42,6 +70,7 @@ public class Recipe implements RowDataGateway {
             recipe.medicamentID = resultSet.getInt("medicament_id");
             recipe.number = resultSet.getInt("number");
             recipe.cashRegisterNumber = resultSet.getInt("cash_register_number");
+            recipe.type = resultSet.getString("type");
 
             resultSet.close();
             ConnectionManager.close();
@@ -62,14 +91,15 @@ public class Recipe implements RowDataGateway {
     @Override
     public void insert() {
         try {
-            String sql = "INSERT INTO recipes (date, cash_register_number, number, medicament_id)" +
-                    "VALUES (?,?,?,?)";
+            String sql = "INSERT INTO recipes (date, cash_register_number, number, medicament_id, type)" +
+                    "VALUES (?,?,?,?, ?)";
             PreparedStatement preparedStatement =
                     ConnectionManager.getConnection().prepareStatement(sql);
             preparedStatement.setDate(1, date);
             preparedStatement.setInt(2, cashRegisterNumber);
             preparedStatement.setInt(3, number);
             preparedStatement.setInt(4, medicamentID);
+            preparedStatement.setString(5, type);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -81,7 +111,7 @@ public class Recipe implements RowDataGateway {
      */
     @Override
     public void update() {
-        String sql = "UPDATE recipes SET date=?, cash_register_number=?, number=?, medicament_id=?" +
+        String sql = "UPDATE recipes SET date=?, cash_register_number=?, number=?, medicament_id=?, type=?" +
                 "WHERE recipe_id=?";
         try {
             PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(sql);
@@ -89,7 +119,8 @@ public class Recipe implements RowDataGateway {
             preparedStatement.setInt(2, cashRegisterNumber);
             preparedStatement.setInt(3, number);
             preparedStatement.setInt(4, medicamentID);
-            preparedStatement.setInt(5, recipeID);
+            preparedStatement.setString(5, type);
+            preparedStatement.setInt(6, recipeID);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -111,5 +142,11 @@ public class Recipe implements RowDataGateway {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+
+    @Override
+    public String toString(){
+        return String.format("%d", number);
     }
 }

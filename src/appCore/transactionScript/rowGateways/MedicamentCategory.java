@@ -87,7 +87,7 @@ public class MedicamentCategory implements RowDataGateway {
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             while (resultSet.next()){
-                lastInsertedID = resultSet.getInt(1);
+                medicamentCategoryID = resultSet.getInt(1);
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -5,6 +5,7 @@ import appCore.transactionScript.db.ConnectionManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * Represent sale kategory from sale_catgories table in databse
@@ -13,6 +14,7 @@ public class SaleCategory implements RowDataGateway {
     public int saleCategoryID;
     public String title;
     public String additionalInformation;
+    public Integer lastInsertedID;
 
     /**
      * finds row represented by this class in sales catgories table
@@ -25,7 +27,7 @@ public class SaleCategory implements RowDataGateway {
         String sql = "SELECT * FROM sale_categories WHERE sale_category_id=?";
         try {
             PreparedStatement statement = ConnectionManager.getConnection().prepareStatement(sql);
-            statement.setString(1, String.valueOf(saleCategoryID));
+            statement.setInt(1, saleCategoryID);
             ResultSet resultSet = statement.executeQuery();
             if (!resultSet.next())
                 return null;
@@ -79,10 +81,15 @@ public class SaleCategory implements RowDataGateway {
             String sql = "INSERT INTO sale_categories (title, additional_information)" +
                     "VALUES (?, ?)";
             PreparedStatement preparedStatement =
-                    ConnectionManager.getConnection().prepareStatement(sql);
+                    ConnectionManager.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, title);
             preparedStatement.setString(2, additionalInformation);
             preparedStatement.executeUpdate();
+
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            while (resultSet.next()){
+                saleCategoryID = resultSet.getInt(1);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

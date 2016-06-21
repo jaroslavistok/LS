@@ -19,7 +19,6 @@ public class Managing {
         SaleCategory saleCategory= new SaleCategory();
         State state = new State();
         MedicamentInformation medicamentInformation = new MedicamentInformation();
-
         em.persist(medicamentInformation);
         em.persist(state);
         em.persist(medicament);

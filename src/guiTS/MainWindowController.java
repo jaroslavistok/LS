@@ -21,43 +21,80 @@ import java.util.ResourceBundle;
 public class MainWindowController implements Initializable {
 
     @FXML
-    private Button addButton;
+    private Label titleLabel;
 
     @FXML
-    private Label nazovLabel;
+    private Label codeLabel;
 
     @FXML
-    private Label kodLabel;
+    private Label batchLabel;
 
     @FXML
-    private Label davkaLabel;
+    private Label addedLabel;
 
     @FXML
-    private Label pridaneNaSkladLabel;
+    private Label expirationLabel;
 
     @FXML
-    private Label expiraciaLabel;
+    private Label soldLabel;
 
     @FXML
-    private Label predaneLabel;
+    private Label stateLabel;
 
     @FXML
-    private Label stavLabel;
+    private Label saleCategoryLabel;
 
     @FXML
-    private Label predajnaKategoriaLabel;
+    private Label medicamentCategoryLabel;
 
     @FXML
-    private Label kategoriaLiekuLabel;
+    private Label sellingPriceLabel;
 
     @FXML
-    private Label cenyLabel;
+    private Label buyoutPriceLabel;
+
 
     @FXML
-    private ListView<Medicament> liekyListView;
+    private ListView<Medicament> medicamentsListView;
     private List<Medicament> medicamentsList;
     private ObservableList<Medicament> medicaments;
 
+
+    public void recipesButton(ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Recipes.fxml"));
+            Parent root = (Parent) loader.load();
+
+            Stage stage = new Stage();
+            RecipesController recipesController = loader.<RecipesController>getController();
+
+            stage.setTitle("Recepty");
+            stage.setScene(new Scene(root, 800, 500));
+            stage.showAndWait();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void handleStatsButtonAction(ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Stats.fxml"));
+            Parent root = (Parent) loader.load();
+
+            Stage stage = new Stage();
+            StatsController controller = loader.<StatsController>getController();
+
+            int numberOfAllMedicaments = Medicament.getNumberOfAllMedicaments();
+            controller.numberOfAllMedicamentsLabel.setText(String.valueOf(numberOfAllMedicaments));
+
+            stage.setTitle("Stats");
+            stage.setScene(new Scene(root, 800, 500));
+            stage.showAndWait();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Invoked new window with text fields, if new medicament was inserted, adds it to listView
@@ -86,25 +123,85 @@ public class MainWindowController implements Initializable {
      * handler, deletes selected item form database and from listView
      */
     public void handleDeleteButtonAction(ActionEvent event){
-        ObservableList<Medicament> toDelete = liekyListView.getSelectionModel().getSelectedItems();
+        ObservableList<Medicament> toDelete = medicamentsListView.getSelectionModel().getSelectedItems();
         for (Medicament item : toDelete){
             medicaments.remove(item);
+
+
+            Price price = Price.findById(item.priceID);
+            MedicamentInformation medicamentInformation = MedicamentInformation.findByID(item.medicamentInformationID);
+            InMedicamentCategory inMedicamentCategory = InMedicamentCategory.findByMedicamentId(item.medicamentID);
+            if (inMedicamentCategory != null)
+                inMedicamentCategory.delete();
+
             item.delete();
+            if (price != null)
+                price.delete();
+            if (medicamentInformation != null)
+                medicamentInformation.delete();
+
+
         }
     }
 
     public void handleUpdateButton(ActionEvent event){
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Update.fxml"));
-            Parent root = (Parent)loader.load();
+            ObservableList<Medicament> toUpdate = medicamentsListView.getSelectionModel().getSelectedItems();
 
-            Stage stage = new Stage();
-            UpdateController controller = loader.<UpdateController>getController();
-            controller.cenyField.setText("Ceny");
+            if (!toUpdate.isEmpty()){
+                Medicament medicament = toUpdate.get(0);
+                MedicamentInformation medicamentInformation = MedicamentInformation.findByID(medicament.medicamentID);
+                Price price = Price.findById(medicament.priceID);
+                SaleCategory saleCategory = SaleCategory.findById(medicament.saleCategoryId);
+                InMedicamentCategory inMedicamentCategory = InMedicamentCategory.findByMedicamentId(medicament.medicamentID);
+                MedicamentCategory medicamentCategory = null;
+                if (inMedicamentCategory != null){
+                    medicamentCategory = MedicamentCategory.findById(inMedicamentCategory.medicament_category_id);
+                }
+                State state = State.findById(medicament.stateID);
 
-            stage.setTitle("Update Window");
-            stage.setScene(new Scene(root, 400, 600));
-            stage.showAndWait();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Update.fxml"));
+                Parent root = (Parent)loader.load();
+
+                Stage stage = new Stage();
+                UpdateController controller = loader.<UpdateController>getController();
+
+                controller.titleField.setText(medicament.title);
+                controller.codeField.setText(medicament.code);
+                controller.batchField.setText(medicament.batch);
+
+                if (saleCategory != null){
+                    controller.saleCategoriesField.setText(saleCategory.title);
+                }
+
+                if (medicamentCategory != null){
+                    controller.medicamentCategoriesField.setText(medicamentCategory.title);
+                }
+
+                if (state != null){
+                    controller.stateField.setText(state.title);
+                }
+
+                if (price != null) {
+                    controller.sellingPriceField.setText(price.sellingPrice.toString());
+                    controller.buyoutPriceField.setText(price.buyoutPrice.toString());
+                }
+
+                if (medicamentInformation != null){
+                    controller.addedField.setText(medicamentInformation.added.toString());
+                    controller.soldField.setText(medicamentInformation.sold.toString());
+                    controller.expirationField.setText(medicamentInformation.expiration.toString());
+                }
+
+
+
+                stage.setTitle("Update Window");
+                stage.setScene(new Scene(root, 400, 600));
+                stage.showAndWait();
+
+
+            }
+
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -120,13 +217,13 @@ public class MainWindowController implements Initializable {
         medicamentsList = Medicament.getAllMedicaments();
         medicaments = FXCollections.observableArrayList(medicamentsList);
 
-        liekyListView.setItems(medicaments);
+        medicamentsListView.setItems(medicaments);
         if (!medicaments.isEmpty()){
-            liekyListView.getSelectionModel().select(0);
+            medicamentsListView.getSelectionModel().select(0);
         }
 
 
-        liekyListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+        medicamentsListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             System.out.println("ListView selection changed from oldValue = "
                     + oldValue + " to newValue = " + newValue);
             // pomocou metod v medicament povytahujem potrebne udaje a aktualizujem labely
@@ -143,23 +240,46 @@ public class MainWindowController implements Initializable {
     private void updateInformationLabels(Medicament medicament){
 
         // gets information from db
+
         Price price = Price.findById(medicament.priceID);
+
         MedicamentInformation medicamentInformation = MedicamentInformation.findByID(medicament.medicamentInformationID);
+
         State state = State.findById(medicament.stateID);
+
         InMedicamentCategory inMedicamentCategory = InMedicamentCategory.findByMedicamentId(medicament.medicamentID);
-        MedicamentCategory medicamentCategory = MedicamentCategory.findById(inMedicamentCategory.medicament_category_id);
+
         SaleCategory saleCategory = SaleCategory.findById(medicament.saleCategoryId);
 
+        MedicamentCategory medicamentCategory = null;
+        if (inMedicamentCategory != null)
+            medicamentCategory = MedicamentCategory.findById(inMedicamentCategory.medicament_category_id);
 
-        nazovLabel.setText(medicament.title);
-        kodLabel.setText(medicament.code);
-        davkaLabel.setText(medicament.batch);
-        pridaneNaSkladLabel.setText(String.valueOf(medicamentInformation.added));
-        expiraciaLabel.setText(String.valueOf(medicamentInformation.expiration));
-        predaneLabel.setText(String.valueOf(medicamentInformation.sold));
-        stavLabel.setText(state.title);
-        predajnaKategoriaLabel.setText(saleCategory.title);
-        kategoriaLiekuLabel.setText(saleCategory.title);
+
+        titleLabel.setText(medicament.title);
+        codeLabel.setText(medicament.code);
+        batchLabel.setText(medicament.batch);
+
+        if (price != null){
+            sellingPriceLabel.setText(String.valueOf(price.sellingPrice));
+            buyoutPriceLabel.setText(String.valueOf(price.buyoutPrice));
+        }
+
+        if (medicamentInformation != null) {
+            addedLabel.setText(String.valueOf(medicamentInformation.added));
+            expirationLabel.setText(String.valueOf(medicamentInformation.expiration));
+            soldLabel.setText(String.valueOf(medicamentInformation.sold));
+        }
+
+        if (state != null) {
+            stateLabel.setText(state.title);
+        }
+
+        if (saleCategory != null)
+            saleCategoryLabel.setText(saleCategory.title);
+
+        if (medicamentCategory != null)
+            medicamentCategoryLabel.setText(medicamentCategory.title);
 
     }
 }
