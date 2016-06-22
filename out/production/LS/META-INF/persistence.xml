@@ -4,14 +4,14 @@
     <persistence-unit name="NewPersistenceUnit">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
        <!-- <exclude-unlisted-classes>false</exclude-unlisted-classes> -->
-        <class>app.dataMapper.Medicament</class>
-        <class>app.dataMapper.MedicamentCategory</class>
-        <class>app.dataMapper.Recipe</class>
-        <class>app.dataMapper.Price</class>
-        <class>app.dataMapper.RecipesBatch</class>
-        <class>app.dataMapper.SaleCategory</class>
-        <class>app.dataMapper.State</class>
-        <class>app.dataMapper.MedicamentInformation</class>
+        <class>appCore.dataMapper.Medicament</class>
+        <class>appCore.dataMapper.MedicamentCategory</class>
+        <class>appCore.dataMapper.Recipe</class>
+        <class>appCore.dataMapper.Price</class>
+        <class>appCore.dataMapper.RecipesBatch</class>
+        <class>appCore.dataMapper.SaleCategory</class>
+        <class>appCore.dataMapper.State</class>
+        <class>appCore.dataMapper.MedicamentInformation</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://db.ii.fmph.uniba.sk:5432/db1"/>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
@@ -19,7 +19,7 @@
             <property name="javax.persistence.jdbc.password" value="db1istok7"/>
             <property
                     name="javax.persistence.schema-generation.database.action"
-                    value="drop-and-create"/>
+                    value="none"/>
         </properties>
     </persistence-unit>
 </persistence>

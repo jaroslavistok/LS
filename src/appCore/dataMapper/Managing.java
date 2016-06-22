@@ -1,5 +1,7 @@
 package appCore.dataMapper;
 
+import appCore.domainModel.MedicamentSelects;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
@@ -7,6 +9,9 @@ public class Managing {
 
     public void insert(){
 
+        MedicamentSelects medicamentSelects = new MedicamentSelects();
+        System.out.println(medicamentSelects.getAllMedicaments());
+        /*
         EntityManager em = Persistence.createEntityManagerFactory("NewPersistenceUnit").createEntityManager();
 
         em.getTransaction().begin();
@@ -29,6 +34,8 @@ public class Managing {
         em.persist(saleCategory);
 
         em.getTransaction().commit();
+
+        */
 
     }
 

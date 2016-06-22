@@ -1,4 +1,4 @@
-package guiDM;
+package guiTS;
 
 import appCore.transactionScript.rowGateways.Recipe;
 import javafx.collections.FXCollections;
@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class RecipesController implements Initializable{
+public class RecipesControllerTS implements Initializable{
 
     @FXML
     public ListView<Recipe> recipesView;

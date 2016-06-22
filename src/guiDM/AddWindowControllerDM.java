@@ -1,6 +1,13 @@
-package guiTS;
+package guiDM;
 
+import appCore.dataMapper.*;
 import appCore.transactionScript.rowGateways.*;
+import appCore.transactionScript.rowGateways.Medicament;
+import appCore.transactionScript.rowGateways.MedicamentCategory;
+import appCore.transactionScript.rowGateways.MedicamentInformation;
+import appCore.transactionScript.rowGateways.Price;
+import appCore.transactionScript.rowGateways.SaleCategory;
+import appCore.transactionScript.rowGateways.State;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,13 +15,12 @@ import javafx.scene.control.TextField;
 
 import java.math.BigDecimal;
 import java.net.URL;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-public class AddWindowController implements Initializable {
+public class AddWindowControllerDM implements Initializable {
     @FXML
     TextField titleField;
 
@@ -48,9 +54,9 @@ public class AddWindowController implements Initializable {
     @FXML
     TextField buyoutPriceField;
 
-    Medicament insertedMedicament;
+    appCore.dataMapper.Medicament insertedMedicament;
 
-    public Medicament getMedicament() {
+    public appCore.dataMapper.Medicament getMedicament() {
         return insertedMedicament;
     }
 
@@ -133,8 +139,6 @@ public class AddWindowController implements Initializable {
         System.out.println(medicamentCategory.medicamentCategoryID);
         System.out.println(medicament.medicamentID);
 
-
-        insertedMedicament = medicament;
         titleField.getScene().getWindow().hide();
     }
 

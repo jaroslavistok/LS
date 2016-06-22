@@ -52,4 +52,9 @@ public class Medicament {
         this.code = code;
     }
 
+    @Override
+    public String toString(){
+        return String.format("%s", title);
+    }
+
 }

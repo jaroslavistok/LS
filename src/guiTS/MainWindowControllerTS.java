@@ -1,4 +1,4 @@
-package guiDM;
+package guiTS;
 import appCore.transactionScript.rowGateways.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +17,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class MainWindowController implements Initializable {
+public class MainWindowControllerTS implements Initializable {
 
     @FXML
     private Label titleLabel;
@@ -61,11 +61,11 @@ public class MainWindowController implements Initializable {
 
     public void recipesButton(ActionEvent event){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Recipes.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("RecipesTS.fxml"));
             Parent root = (Parent) loader.load();
 
             Stage stage = new Stage();
-            RecipesController recipesController = loader.<RecipesController>getController();
+            RecipesControllerTS recipesController = loader.<RecipesControllerTS>getController();
 
             stage.setTitle("Recepty");
             stage.setScene(new Scene(root, 800, 500));
@@ -78,11 +78,11 @@ public class MainWindowController implements Initializable {
 
     public void handleStatsButtonAction(ActionEvent event){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Stats.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("StatsTS.fxml"));
             Parent root = (Parent) loader.load();
 
             Stage stage = new Stage();
-            StatsController controller = loader.<StatsController>getController();
+            StatsControllerTS controller = loader.<StatsControllerTS>getController();
 
             int numberOfAllMedicaments = Medicament.getNumberOfAllMedicaments();
             controller.numberOfAllMedicamentsLabel.setText(String.valueOf(numberOfAllMedicaments));
@@ -98,13 +98,13 @@ public class MainWindowController implements Initializable {
     /**
      * Invoked new window with text fields, if new medicament was inserted, adds it to listView
      */
-    public void handleAddButtonAction(ActionEvent event) {
+    public void handleAddButtonAction(javafx.event.ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AddWindows.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AddWindowsTS.fxml"));
             Parent root = (Parent)loader.load();
 
             Stage stage = new Stage();
-            AddWindowController controller = loader.<AddWindowController>getController();
+            AddWindowControllerTS controller = loader.<AddWindowControllerTS>getController();
 
             stage.setTitle("Add Window");
             stage.setScene(new Scene(root, 400, 600));
@@ -159,11 +159,11 @@ public class MainWindowController implements Initializable {
                 }
                 State state = State.findById(medicament.stateID);
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("Update.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("UpdateTS.fxml"));
                 Parent root = (Parent)loader.load();
 
                 Stage stage = new Stage();
-                UpdateController controller = loader.<UpdateController>getController();
+                UpdateControllerTS controller = loader.<UpdateControllerTS>getController();
 
                 controller.titleField.setText(medicament.title);
                 controller.codeField.setText(medicament.code);

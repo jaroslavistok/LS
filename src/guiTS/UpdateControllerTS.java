@@ -1,4 +1,4 @@
-package guiDM;
+package guiTS;
 
 import appCore.transactionScript.rowGateways.*;
 import javafx.event.ActionEvent;
@@ -8,13 +8,13 @@ import javafx.scene.control.TextField;
 
 import java.math.BigDecimal;
 import java.net.URL;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-public class AddWindowController implements Initializable {
+public class UpdateControllerTS implements Initializable {
+
     @FXML
     TextField titleField;
 
@@ -48,27 +48,16 @@ public class AddWindowController implements Initializable {
     @FXML
     TextField buyoutPriceField;
 
-    Medicament insertedMedicament;
-
-    public Medicament getMedicament() {
-        return insertedMedicament;
-    }
-
-    //private Medicament medicament;
-
-    /**
-     * veryfi and saves given information to the database
-     */
-    public void handleOkButtonAction(ActionEvent event){
-        // saves Price information, every medicament has its own price
+    public void handleUpdateButtonAction(ActionEvent event){
+// saves Price information, every medicament has its own price
         Price price = new Price();
         price.buyoutPrice = new BigDecimal(buyoutPriceField.getText());
         price.sellingPrice = new BigDecimal(sellingPriceField.getText());
-        price.insert();
+        price.update();
 
         // saves medicament information, every medicament has its own information
         MedicamentInformation medicamentInformation = new MedicamentInformation();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-dd-mm");
         try {
             Date expirationDate = dateFormat.parse(expirationField.getText());
             medicamentInformation.expiration = new java.sql.Date(expirationDate.getTime());
@@ -76,7 +65,7 @@ public class AddWindowController implements Initializable {
             medicamentInformation.sold = new java.sql.Date(soldDate.getTime());
             Date buyoutDate = dateFormat.parse(addedField.getText());
             medicamentInformation.added = new java.sql.Date(buyoutDate.getTime());
-            medicamentInformation.insert();
+            medicamentInformation.update();
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -88,7 +77,7 @@ public class AddWindowController implements Initializable {
         if (state == null) {
             state = new State();
             state.title = stateField.getText();
-            state.insert();
+            state.update();
         }
 
 
@@ -97,7 +86,7 @@ public class AddWindowController implements Initializable {
         if (medicamentCategory == null){
             medicamentCategory = new MedicamentCategory();
             medicamentCategory.title = medicamentCategoriesField.getText();
-            medicamentCategory.insert();
+            medicamentCategory.update();
         }
 
 
@@ -108,7 +97,7 @@ public class AddWindowController implements Initializable {
         if (saleCategory == null) {
             saleCategory = new SaleCategory();
             saleCategory.title = saleCategoriesField.getText();
-            saleCategory.insert();
+            saleCategory.update();
         }
 
 
@@ -122,25 +111,23 @@ public class AddWindowController implements Initializable {
         medicament.priceID = price.priceID;
         medicament.saleCategoryId = saleCategory.saleCategoryID;
         medicament.stateID = state.stateID;
-        medicament.insert();
+        medicament.update();
 
         // at the end update binding table
         InMedicamentCategory inMedicamentCategory = new InMedicamentCategory();
         inMedicamentCategory.medicament_category_id = medicamentCategory.medicamentCategoryID;
         inMedicamentCategory.medicament_id = medicament.medicamentID;
-        inMedicamentCategory.insert();
-        System.out.println("inserted");
+        inMedicamentCategory.update();
+
         System.out.println(medicamentCategory.medicamentCategoryID);
         System.out.println(medicament.medicamentID);
 
-
-        insertedMedicament = medicament;
         titleField.getScene().getWindow().hide();
     }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
-
 }

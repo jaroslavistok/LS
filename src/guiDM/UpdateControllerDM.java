@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-public class UpdateController implements Initializable {
+public class UpdateControllerDM implements Initializable {
 
     @FXML
     TextField titleField;

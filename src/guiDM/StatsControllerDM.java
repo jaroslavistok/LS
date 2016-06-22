@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class StatsController implements Initializable{
+public class StatsControllerDM implements Initializable{
 
     @FXML
     public Label numberOfAllMedicamentsLabel;

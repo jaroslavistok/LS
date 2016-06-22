@@ -6,12 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class MainDM extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
-        primaryStage.setTitle("LS");
+        Parent root = FXMLLoader.load(getClass().getResource("MainWindowDM.fxml"));
+        primaryStage.setTitle("DM");
         primaryStage.setScene(new Scene(root, 740, 529));
         primaryStage.show();
     }

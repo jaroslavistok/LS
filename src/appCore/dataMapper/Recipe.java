@@ -29,4 +29,10 @@ public class Recipe {
     @JoinColumn(name="recipe_batch_id")
     RecipesBatch recipesBatch;
 
+
+    @Override
+    public String toString(){
+        return String.format("%d", number);
+    }
+
 }
