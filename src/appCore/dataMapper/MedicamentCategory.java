@@ -7,6 +7,8 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="medicaments_categories")
+@NamedQuery(name = "find by name",
+query = "select mc from MedicamentCategory mc where mc.title=:title")
 public class MedicamentCategory {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int medicament_category_id;

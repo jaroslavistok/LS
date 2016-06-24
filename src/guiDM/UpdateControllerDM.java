@@ -1,16 +1,20 @@
 package guiDM;
 
-import appCore.transactionScript.rowGateways.*;
+import appCore.dataMapper.MedicamentInformation;
+import appCore.dataMapper.Price;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import java.math.BigDecimal;
 import java.net.URL;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class UpdateControllerDM implements Initializable {
@@ -49,78 +53,68 @@ public class UpdateControllerDM implements Initializable {
     TextField buyoutPriceField;
 
     public void handleUpdateButtonAction(ActionEvent event){
-// saves Price information, every medicament has its own price
-        Price price = new Price();
-        price.buyoutPrice = new BigDecimal(buyoutPriceField.getText());
-        price.sellingPrice = new BigDecimal(sellingPriceField.getText());
-        price.update();
 
-        // saves medicament information, every medicament has its own information
+        EntityManager entityManager = Persistence.createEntityManagerFactory("NewPersistenceUnit").createEntityManager();
+        entityManager.getTransaction().begin();
+
+
+        Price price = new Price();
+        price.seelingPrice = new BigDecimal(sellingPriceField.getText());
+        price.buyoutPrice = new BigDecimal(buyoutPriceField.getText());
+        entityManager.persist(price);
+
         MedicamentInformation medicamentInformation = new MedicamentInformation();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-dd-mm");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         try {
             Date expirationDate = dateFormat.parse(expirationField.getText());
             medicamentInformation.expiration = new java.sql.Date(expirationDate.getTime());
+            Date addedDate = dateFormat.parse(addedField.getText());
+            medicamentInformation.added = new java.sql.Date(addedDate.getTime());
             Date soldDate = dateFormat.parse(soldField.getText());
             medicamentInformation.sold = new java.sql.Date(soldDate.getTime());
-            Date buyoutDate = dateFormat.parse(addedField.getText());
-            medicamentInformation.added = new java.sql.Date(buyoutDate.getTime());
-            medicamentInformation.update();
-        } catch (ParseException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
+        entityManager.persist(medicamentInformation);
 
+        Query query = entityManager.createNamedQuery("Find category by title", appCore.dataMapper.SaleCategory.class);
+        query.setParameter("title", saleCategoriesField.getText());
+        List<appCore.dataMapper.SaleCategory> saleCategoryList = query.getResultList();
 
-
-        // inserts new state only if this state don't exists already
-        State state = State.findByTitle(stateField.getText());
-        if (state == null) {
-            state = new State();
-            state.title = stateField.getText();
-            state.update();
-        }
-
-
-        // inserts new category only if desired category doesn't exists
-        MedicamentCategory medicamentCategory = MedicamentCategory.findByTitle(medicamentCategoriesField.getText());
-        if (medicamentCategory == null){
-            medicamentCategory = new MedicamentCategory();
-            medicamentCategory.title = medicamentCategoriesField.getText();
-            medicamentCategory.update();
-        }
-
-
-
-
-        // inserts new sale category only if this category doesnt exists
-        SaleCategory saleCategory = SaleCategory.findByName(saleCategoriesField.getText());
-        if (saleCategory == null) {
-            saleCategory = new SaleCategory();
+        appCore.dataMapper.SaleCategory saleCategory = new appCore.dataMapper.SaleCategory();
+        if (saleCategoryList.size() == 0) {
             saleCategory.title = saleCategoriesField.getText();
-            saleCategory.update();
+            entityManager.persist(saleCategory);
+        } else {
+            saleCategory = saleCategoryList.get(0);
         }
 
+        query = entityManager.createNamedQuery("find by name", appCore.dataMapper.SaleCategory.class);
+        query.setParameter("title", medicamentCategoriesField.getText());
+        List<appCore.dataMapper.MedicamentCategory> medicamentCategories = query.getResultList();
 
-        // finaly inserts new medicament with all foreign keys and so on
+        appCore.dataMapper.MedicamentCategory medicamentCategory = new appCore.dataMapper.MedicamentCategory();
+        if (medicamentCategories.size() == 0) {
+            medicamentCategory.title = medicamentCategoriesField.getText();
+            entityManager.persist(medicamentCategory);
+        } else {
+            medicamentCategory = medicamentCategories.get(0);
+        }
 
-        Medicament medicament = new Medicament();
+        appCore.dataMapper.Medicament medicament = new appCore.dataMapper.Medicament();
+        medicament.price = price;
+        medicament.saleCategory =saleCategory;
+        medicament.medicamentCategories = medicamentCategories;
+        medicament.medicamentInformation = medicamentInformation;
         medicament.title = titleField.getText();
-        medicament.batch = batchField.getText();
         medicament.code = codeField.getText();
-        medicament.medicamentInformationID = medicamentInformation.medicamentInformationID;
-        medicament.priceID = price.priceID;
-        medicament.saleCategoryId = saleCategory.saleCategoryID;
-        medicament.stateID = state.stateID;
-        medicament.update();
+        medicament.batch = batchField.getText();
+        entityManager.persist(medicament);
 
-        // at the end update binding table
-        InMedicamentCategory inMedicamentCategory = new InMedicamentCategory();
-        inMedicamentCategory.medicament_category_id = medicamentCategory.medicamentCategoryID;
-        inMedicamentCategory.medicament_id = medicament.medicamentID;
-        inMedicamentCategory.update();
+        entityManager.getTransaction().commit();
+        System.out.println("Added");
 
-        System.out.println(medicamentCategory.medicamentCategoryID);
-        System.out.println(medicament.medicamentID);
+
 
         titleField.getScene().getWindow().hide();
     }

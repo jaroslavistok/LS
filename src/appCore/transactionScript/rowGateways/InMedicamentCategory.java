@@ -43,7 +43,7 @@ public class InMedicamentCategory implements RowDataGateway {
     }
 
     /**
-     * finds binding by medicament id
+     * finds binding by medicamentCategories id
      */
     public static InMedicamentCategory findByMedicamentId(int medicamentID){
         InMedicamentCategory inCategoryBinding = new InMedicamentCategory();

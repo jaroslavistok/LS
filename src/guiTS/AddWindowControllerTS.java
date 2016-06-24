@@ -54,19 +54,19 @@ public class AddWindowControllerTS implements Initializable {
         return insertedMedicament;
     }
 
-    //private Medicament medicament;
+    //private Medicament medicamentCategories;
 
     /**
      * veryfi and saves given information to the database
      */
     public void handleOkButtonAction(ActionEvent event){
-        // saves Price information, every medicament has its own price
+        // saves Price information, every medicamentCategories has its own price
         Price price = new Price();
         price.buyoutPrice = new BigDecimal(buyoutPriceField.getText());
         price.sellingPrice = new BigDecimal(sellingPriceField.getText());
         price.insert();
 
-        // saves medicament information, every medicament has its own information
+        // saves medicamentCategories information, every medicamentCategories has its own information
         MedicamentInformation medicamentInformation = new MedicamentInformation();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         try {
@@ -112,7 +112,7 @@ public class AddWindowControllerTS implements Initializable {
         }
 
 
-        // finaly inserts new medicament with all foreign keys and so on
+        // finaly inserts new medicamentCategories with all foreign keys and so on
 
         Medicament medicament = new Medicament();
         medicament.title = titleField.getText();

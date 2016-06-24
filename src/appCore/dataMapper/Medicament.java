@@ -3,7 +3,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 /**
- * Medicament class, maps medicament table in database
+ * Medicament class, maps medicamentCategories table in database
  */
 @Entity
 @Table(name="medicaments")
@@ -20,7 +20,7 @@ public class Medicament {
     @JoinTable(name="in_medicament_category",
     joinColumns = @JoinColumn(name = "medicament_id"),
     inverseJoinColumns = @JoinColumn(name="medicament_category_id"))
-    public Collection<MedicamentCategory> medicament;
+    public Collection<MedicamentCategory> medicamentCategories;
 
 
     @ManyToOne
@@ -30,15 +30,18 @@ public class Medicament {
 
     @OneToOne
     @JoinColumn(name="state_id")
-    State state;
+    public State state;
 
     @OneToOne
     @JoinColumn(name = "price_id")
-    Price price;
+    public Price price;
 
     @OneToOne
     @JoinColumn(name= "medicament_information_id")
-    MedicamentInformation medicamentInformation;
+    public MedicamentInformation medicamentInformation;
+
+    @OneToMany(mappedBy = "medicament")
+    public Collection<PriceHistory> histories;
 
 
 

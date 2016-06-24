@@ -48,14 +48,31 @@ public class UpdateControllerTS implements Initializable {
     @FXML
     TextField buyoutPriceField;
 
+
+
+    int medicamentID;
+
+    int saleCategoryID;
+
+    int medicamentCategoryID;
+
+    int priceID;
+
+    int medicamentInformationID;
+
+    int stateID;
+
+    Medicament updated;
+
     public void handleUpdateButtonAction(ActionEvent event){
-// saves Price information, every medicament has its own price
+// saves Price information, every medicamentCategories has its own price
         Price price = new Price();
         price.buyoutPrice = new BigDecimal(buyoutPriceField.getText());
         price.sellingPrice = new BigDecimal(sellingPriceField.getText());
+        price.priceID = priceID;
         price.update();
 
-        // saves medicament information, every medicament has its own information
+        // saves medicamentCategories information, every medicamentCategories has its own information
         MedicamentInformation medicamentInformation = new MedicamentInformation();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-dd-mm");
         try {
@@ -65,6 +82,7 @@ public class UpdateControllerTS implements Initializable {
             medicamentInformation.sold = new java.sql.Date(soldDate.getTime());
             Date buyoutDate = dateFormat.parse(addedField.getText());
             medicamentInformation.added = new java.sql.Date(buyoutDate.getTime());
+            medicamentInformation.medicamentInformationID = medicamentInformationID;
             medicamentInformation.update();
         } catch (ParseException e) {
             e.printStackTrace();
@@ -77,6 +95,7 @@ public class UpdateControllerTS implements Initializable {
         if (state == null) {
             state = new State();
             state.title = stateField.getText();
+            state.stateID = stateID;
             state.update();
         }
 
@@ -86,6 +105,7 @@ public class UpdateControllerTS implements Initializable {
         if (medicamentCategory == null){
             medicamentCategory = new MedicamentCategory();
             medicamentCategory.title = medicamentCategoriesField.getText();
+            medicamentCategory.medicamentCategoryID = medicamentCategoryID;
             medicamentCategory.update();
         }
 
@@ -97,21 +117,27 @@ public class UpdateControllerTS implements Initializable {
         if (saleCategory == null) {
             saleCategory = new SaleCategory();
             saleCategory.title = saleCategoriesField.getText();
+            saleCategory.saleCategoryID = saleCategoryID;
             saleCategory.update();
         }
 
 
-        // finaly inserts new medicament with all foreign keys and so on
+        // finaly inserts new medicamentCategories with all foreign keys and so on
 
         Medicament medicament = new Medicament();
         medicament.title = titleField.getText();
         medicament.batch = batchField.getText();
         medicament.code = codeField.getText();
         medicament.medicamentInformationID = medicamentInformation.medicamentInformationID;
+        medicament.medicamentID =
         medicament.priceID = price.priceID;
         medicament.saleCategoryId = saleCategory.saleCategoryID;
         medicament.stateID = state.stateID;
+        medicament.medicamentID = medicamentID;
         medicament.update();
+
+        System.out.println("Medicament id: " + medicament.medicamentID);
+        System.out.println("updatet");
 
         // at the end update binding table
         InMedicamentCategory inMedicamentCategory = new InMedicamentCategory();
@@ -119,9 +145,8 @@ public class UpdateControllerTS implements Initializable {
         inMedicamentCategory.medicament_id = medicament.medicamentID;
         inMedicamentCategory.update();
 
-        System.out.println(medicamentCategory.medicamentCategoryID);
-        System.out.println(medicament.medicamentID);
-
+        System.out.println(medicament);
+        updated = medicament;
         titleField.getScene().getWindow().hide();
     }
 

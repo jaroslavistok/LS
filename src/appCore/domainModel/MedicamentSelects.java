@@ -19,7 +19,6 @@ public class MedicamentSelects {
             System.out.println(medicament);
         }
 
-
         entityManager.getTransaction().commit();
         return medicamentList;
     }

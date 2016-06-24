@@ -96,7 +96,7 @@ public class MainWindowControllerTS implements Initializable {
     }
 
     /**
-     * Invoked new window with text fields, if new medicament was inserted, adds it to listView
+     * Invoked new window with text fields, if new medicamentCategories was inserted, adds it to listView
      */
     public void handleAddButtonAction(javafx.event.ActionEvent event) {
         try {
@@ -123,23 +123,23 @@ public class MainWindowControllerTS implements Initializable {
      */
     public void handleDeleteButtonAction(ActionEvent event){
         ObservableList<Medicament> toDelete = medicamentsListView.getSelectionModel().getSelectedItems();
-        for (Medicament item : toDelete){
-            medicaments.remove(item);
 
+        if (!toDelete.isEmpty()) {
+            for (Medicament item : toDelete) {
+                medicaments.remove(item);
 
-            Price price = Price.findById(item.priceID);
-            MedicamentInformation medicamentInformation = MedicamentInformation.findByID(item.medicamentInformationID);
-            InMedicamentCategory inMedicamentCategory = InMedicamentCategory.findByMedicamentId(item.medicamentID);
-            if (inMedicamentCategory != null)
-                inMedicamentCategory.delete();
+                Price price = Price.findById(item.priceID);
+                MedicamentInformation medicamentInformation = MedicamentInformation.findByID(item.medicamentInformationID);
+                InMedicamentCategory inMedicamentCategory = InMedicamentCategory.findByMedicamentId(item.medicamentID);
+                if (inMedicamentCategory != null)
+                    inMedicamentCategory.delete();
 
-            item.delete();
-            if (price != null)
-                price.delete();
-            if (medicamentInformation != null)
-                medicamentInformation.delete();
-
-
+                item.delete();
+                if (price != null)
+                    price.delete();
+                if (medicamentInformation != null)
+                    medicamentInformation.delete();
+            }
         }
     }
 
@@ -168,37 +168,45 @@ public class MainWindowControllerTS implements Initializable {
                 controller.titleField.setText(medicament.title);
                 controller.codeField.setText(medicament.code);
                 controller.batchField.setText(medicament.batch);
+                controller.medicamentID = medicament.medicamentID;
 
                 if (saleCategory != null){
                     controller.saleCategoriesField.setText(saleCategory.title);
+                    controller.saleCategoryID = saleCategory.saleCategoryID;
                 }
 
                 if (medicamentCategory != null){
                     controller.medicamentCategoriesField.setText(medicamentCategory.title);
+                    controller.medicamentCategoryID = medicamentCategory.medicamentCategoryID;
                 }
 
                 if (state != null){
                     controller.stateField.setText(state.title);
+                    controller.stateID = state.stateID;
                 }
 
                 if (price != null) {
                     controller.sellingPriceField.setText(price.sellingPrice.toString());
                     controller.buyoutPriceField.setText(price.buyoutPrice.toString());
+                    controller.priceID = price.priceID;
                 }
 
                 if (medicamentInformation != null){
                     controller.addedField.setText(medicamentInformation.added.toString());
                     controller.soldField.setText(medicamentInformation.sold.toString());
                     controller.expirationField.setText(medicamentInformation.expiration.toString());
+                    controller.medicamentInformationID = medicamentInformation.medicamentInformationID;
                 }
-
-
 
                 stage.setTitle("Update Window");
                 stage.setScene(new Scene(root, 400, 600));
                 stage.showAndWait();
 
-
+                if (controller.updated != null){
+                    System.out.println("added");
+                    medicaments.remove(medicament);
+                    medicaments.add(controller.updated);
+                }
             }
 
         }catch (IOException e){
@@ -225,16 +233,17 @@ public class MainWindowControllerTS implements Initializable {
         medicamentsListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             System.out.println("ListView selection changed from oldValue = "
                     + oldValue + " to newValue = " + newValue);
-            // pomocou metod v medicament povytahujem potrebne udaje a aktualizujem labely
+            // pomocou metod v medicamentCategories povytahujem potrebne udaje a aktualizujem labely
             // treba srpavit transaction script
-            updateInformationLabels(newValue);
+            if (newValue != null)
+                updateInformationLabels(newValue);
 
 
         });
     }
 
     /**
-     * Updates infromation labels with information about given medicament
+     * Updates infromation labels with information about given medicamentCategories
      */
     private void updateInformationLabels(Medicament medicament){
 

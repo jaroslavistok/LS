@@ -27,7 +27,7 @@ public class Medicament implements RowDataGateway {
 
     /**
      * Factory method
-     * Finds medicament in medicaments table by its ID
+     * Finds medicamentCategories in medicaments table by its ID
      * Returns null if not found, otherwise returns new Medicament object
      * with data from database
      */
@@ -104,6 +104,7 @@ public class Medicament implements RowDataGateway {
         try{
             String query = "SELECT count(*) FROM medicaments " +
                     "WHERE state_id=(SELECT state_id FROM states WHERE title='sold')";
+
             PreparedStatement statement = ConnectionManager.getConnection().prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){

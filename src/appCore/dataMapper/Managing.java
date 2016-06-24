@@ -9,14 +9,11 @@ public class Managing {
 
     public void insert(){
 
-        MedicamentSelects medicamentSelects = new MedicamentSelects();
-        System.out.println(medicamentSelects.getAllMedicaments());
-        /*
+
         EntityManager em = Persistence.createEntityManagerFactory("NewPersistenceUnit").createEntityManager();
 
         em.getTransaction().begin();
-
-        Medicament medicament = new Medicament();
+        Medicament medicamentCategories = new Medicament();
         MedicamentCategory medicamentCategory = new MedicamentCategory();
         Price price = new Price();
         Recipe recipe = new Recipe();
@@ -24,9 +21,12 @@ public class Managing {
         SaleCategory saleCategory= new SaleCategory();
         State state = new State();
         MedicamentInformation medicamentInformation = new MedicamentInformation();
+        PriceHistory priceHistory = new PriceHistory();
+
+        em.persist(priceHistory);
         em.persist(medicamentInformation);
         em.persist(state);
-        em.persist(medicament);
+        em.persist(medicamentCategories);
         em.persist(medicamentCategory);
         em.persist(price);
         em.persist(recipe);
@@ -35,7 +35,7 @@ public class Managing {
 
         em.getTransaction().commit();
 
-        */
+
 
     }
 

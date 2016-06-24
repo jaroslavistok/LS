@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * Represents medicament category from medicaments_categories table
+ * Represents medicamentCategories category from medicaments_categories table
  */
 public class MedicamentCategory implements RowDataGateway {
     public int medicamentCategoryID;
@@ -17,7 +17,7 @@ public class MedicamentCategory implements RowDataGateway {
     public int lastInsertedID;
 
     /**
-     * finds medicament category by id and returns object, that represents
+     * finds medicamentCategories category by id and returns object, that represents
      * this row from databse, otherwise return null
      *
      */
@@ -72,7 +72,7 @@ public class MedicamentCategory implements RowDataGateway {
     }
 
     /**
-     * Inserts new medicament category represented by this class to the
+     * Inserts new medicamentCategories category represented by this class to the
      * database
      */
     @Override
@@ -95,7 +95,7 @@ public class MedicamentCategory implements RowDataGateway {
     }
 
     /**
-     * Updates medicament category represented by this class in database
+     * Updates medicamentCategories category represented by this class in database
      */
     @Override
     public void update() {
@@ -114,7 +114,7 @@ public class MedicamentCategory implements RowDataGateway {
     }
 
     /**
-     * Remove medicament category represented by this cass from database
+     * Remove medicamentCategories category represented by this cass from database
      */
     @Override
     public void delete() {

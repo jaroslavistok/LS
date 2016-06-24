@@ -32,5 +32,9 @@ public class Price {
     @Column(name = "selling_price")
     public BigDecimal seelingPrice;
 
+    @Override
+    public String toString(){
+        return String.format("%s", buyoutPrice);
+    }
 
 }

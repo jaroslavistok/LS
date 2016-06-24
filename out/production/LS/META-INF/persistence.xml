@@ -12,6 +12,7 @@
         <class>appCore.dataMapper.SaleCategory</class>
         <class>appCore.dataMapper.State</class>
         <class>appCore.dataMapper.MedicamentInformation</class>
+        <class>appCore.dataMapper.PriceHistory</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://db.ii.fmph.uniba.sk:5432/db1"/>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
@@ -19,7 +20,7 @@
             <property name="javax.persistence.jdbc.password" value="db1istok7"/>
             <property
                     name="javax.persistence.schema-generation.database.action"
-                    value="none"/>
+                    value="drop-and-create"/>
         </properties>
     </persistence-unit>
 </persistence>

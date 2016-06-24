@@ -85,7 +85,7 @@ public class Recipe implements RowDataGateway {
     /**
      * Insert new row represented by this class to the database
      *
-     * Constraint: medicamentID must exists in table medicament
+     * Constraint: medicamentID must exists in table medicamentCategories
      * otherwise this method will not work
      */
     @Override

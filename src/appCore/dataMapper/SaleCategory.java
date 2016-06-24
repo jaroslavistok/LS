@@ -8,6 +8,8 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "sale_categories")
+@NamedQuery(query = "SELECT s from SaleCategory s where s.title=:title",
+        name = "Find category by title")
 public class SaleCategory {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sale_category_id")
