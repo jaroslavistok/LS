@@ -37,21 +37,38 @@ public class RecipesControllerTS implements Initializable{
     @FXML
     public Label batchLabel;
 
+
+    /**
+     * Change button event handler, changes selected recipe
+     *
+     */
     public void handleChangeBatchButton(ActionEvent event){
 
     }
 
+    /**
+     * retax button event handler,
+     */
     public void handleRetaxButton(ActionEvent event){
+        List<Recipe> recipes = recipesView.getSelectionModel().getSelectedItems();
+
+
+
+        for (Recipe recipe : recipes){
+
+
+        }
 
     }
 
 
+    /**
+     * Loads and set all recipes to the list view in gui
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         List<Recipe> recipeList = Recipe.getAllRecipes();
         ObservableList<Recipe> observableRecipeList =  FXCollections.observableArrayList(recipeList);
         recipesView.setItems(observableRecipeList);
-
-
     }
 }

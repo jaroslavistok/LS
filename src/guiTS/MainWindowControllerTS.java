@@ -87,6 +87,7 @@ public class MainWindowControllerTS implements Initializable {
             int numberOfAllMedicaments = Medicament.getNumberOfAllMedicaments();
             controller.numberOfAllMedicamentsLabel.setText(String.valueOf(numberOfAllMedicaments));
 
+
             stage.setTitle("Stats");
             stage.setScene(new Scene(root, 800, 500));
             stage.showAndWait();
