@@ -66,6 +66,38 @@ public class Medicament implements RowDataGateway {
         return null;
     }
 
+    public static Medicament findBuTitle(String medicamentTitle) {
+        Medicament medicament = new Medicament();
+
+        String query = "SELECT * FROM medicaments WHERE title=?";
+        try {
+            PreparedStatement statement = ConnectionManager.getConnection().prepareStatement(query);
+            statement.setString(1, medicamentTitle);
+            ResultSet resultSet = statement.executeQuery();
+            if (!resultSet.next())
+                return null;
+
+            medicament.medicamentID = resultSet.getInt("medicament_id");
+            medicament.saleCategoryId = resultSet.getInt("sale_category_id");
+            medicament.stateID = resultSet.getInt("state_id");
+            medicament.priceID = resultSet.getInt("price_id");
+            medicament.medicamentInformationID = resultSet.getInt("medicament_information_id");
+            medicament.title = resultSet.getString("title");
+            medicament.batch = resultSet.getString("batch");
+            medicament.code = resultSet.getString("code");
+
+            resultSet.close();
+            ConnectionManager.close();
+            return medicament;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+
     /**
      * Return array list of all medicaments
      */
@@ -84,44 +116,6 @@ public class Medicament implements RowDataGateway {
             e.printStackTrace();
         }
         return null;
-    }
-
-    public static int getNumberOfAllMedicaments(){
-        try{
-            String query = "SELECT count(*) FROM medicaments";
-            PreparedStatement statement = ConnectionManager.getConnection().prepareStatement(query);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()){
-                return resultSet.getInt(1);
-            }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return 0;
-    }
-
-    public static int getNumberOfSoldMedicaments(){
-        try{
-            String query = "SELECT count(*) FROM medicaments " +
-                    "WHERE state_id=(SELECT state_id FROM states WHERE title='sold')";
-
-            PreparedStatement statement = ConnectionManager.getConnection().prepareStatement(query);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()){
-                return resultSet.getInt(1);
-            }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return 0;
-    }
-
-    public static int getNumberOfMedicamentsInStore(){
-        return 0;
-    }
-
-    public static int getNumberOfMaterialsInLab(){
-        return 0;
     }
 
     /**

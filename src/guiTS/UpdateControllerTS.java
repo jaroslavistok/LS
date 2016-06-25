@@ -4,6 +4,7 @@ import appCore.transactionScript.rowGateways.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.math.BigDecimal;
@@ -48,6 +49,9 @@ public class UpdateControllerTS implements Initializable {
     @FXML
     TextField buyoutPriceField;
 
+    @FXML
+    TextArea errorsLog;
+
 
 
     int medicamentID;
@@ -65,14 +69,15 @@ public class UpdateControllerTS implements Initializable {
     Medicament updated;
 
     public void handleUpdateButtonAction(ActionEvent event){
-// saves Price information, every medicamentCategories has its own price
+        if (!verifyInputs())
+            return;
+
         Price price = new Price();
         price.buyoutPrice = new BigDecimal(buyoutPriceField.getText());
         price.sellingPrice = new BigDecimal(sellingPriceField.getText());
         price.priceID = priceID;
         price.update();
 
-        // saves medicamentCategories information, every medicamentCategories has its own information
         MedicamentInformation medicamentInformation = new MedicamentInformation();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-dd-mm");
         try {
@@ -88,9 +93,6 @@ public class UpdateControllerTS implements Initializable {
             e.printStackTrace();
         }
 
-
-
-        // inserts new state only if this state don't exists already
         State state = State.findByTitle(stateField.getText());
         if (state == null) {
             state = new State();
@@ -99,8 +101,6 @@ public class UpdateControllerTS implements Initializable {
             state.update();
         }
 
-
-        // inserts new category only if desired category doesn't exists
         MedicamentCategory medicamentCategory = MedicamentCategory.findByTitle(medicamentCategoriesField.getText());
         if (medicamentCategory == null){
             medicamentCategory = new MedicamentCategory();
@@ -109,10 +109,6 @@ public class UpdateControllerTS implements Initializable {
             medicamentCategory.update();
         }
 
-
-
-
-        // inserts new sale category only if this category doesnt exists
         SaleCategory saleCategory = SaleCategory.findByName(saleCategoriesField.getText());
         if (saleCategory == null) {
             saleCategory = new SaleCategory();
@@ -120,9 +116,6 @@ public class UpdateControllerTS implements Initializable {
             saleCategory.saleCategoryID = saleCategoryID;
             saleCategory.update();
         }
-
-
-        // finaly inserts new medicamentCategories with all foreign keys and so on
 
         Medicament medicament = new Medicament();
         medicament.title = titleField.getText();
@@ -136,20 +129,84 @@ public class UpdateControllerTS implements Initializable {
         medicament.medicamentID = medicamentID;
         medicament.update();
 
-        System.out.println("Medicament id: " + medicament.medicamentID);
-        System.out.println("updatet");
-
-        // at the end update binding table
         InMedicamentCategory inMedicamentCategory = new InMedicamentCategory();
         inMedicamentCategory.medicament_category_id = medicamentCategory.medicamentCategoryID;
         inMedicamentCategory.medicament_id = medicament.medicamentID;
         inMedicamentCategory.update();
 
-        System.out.println(medicament);
         updated = medicament;
         titleField.getScene().getWindow().hide();
     }
 
+    private boolean verifyInputs(){
+        boolean valid = true;
+
+        if (titleField.getText().isEmpty()){
+            errorsLog.appendText("Nazov nesmie byt prazdny\n");
+            valid = false;
+        }
+
+        if (codeField.getText().isEmpty()){
+            errorsLog.appendText("Kazdy liek musi obsahovat kod\n");
+            valid = false;
+        }
+
+        if (batchField.getText().isEmpty()){
+            errorsLog.appendText("Kazdy liek musi byt v nejakej davke\n");
+            valid = false;
+        }
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            dateFormat.parse(expirationField.getText());
+            dateFormat.parse(addedField.getText());
+            dateFormat.parse(soldField.getText());
+        } catch (ParseException e){
+            errorsLog.appendText("Zle zadany format datumu\n");
+            valid = false;
+        }
+
+        if (saleCategoriesField.getText().isEmpty()){
+            errorsLog.appendText("predajna kateogria nesmie byt prazdna\n");
+            valid = false;
+
+        }
+
+        if (medicamentCategoriesField.getText().isEmpty()){
+            errorsLog.appendText("kategoria lieku nesmie byt prazdna\n");
+            valid = false;
+
+        }
+
+        if (stateField.getText().isEmpty()){
+            errorsLog.appendText("liek musi mat stav\n");
+            valid = false;
+
+        }
+
+        if (buyoutPriceField.getText().isEmpty()){
+            errorsLog.appendText("nakupna cena musi byt vyplnena\n");
+            valid = false;
+
+        }
+
+        if (sellingPriceField.getText().isEmpty()){
+            errorsLog.appendText("predajna cena musi byt vyplnena\n");
+            valid = false;
+
+        }
+
+        try{
+            BigDecimal bigDecimal = new BigDecimal(buyoutPriceField.getText());
+            bigDecimal = new BigDecimal(sellingPriceField.getText());
+        }catch (NumberFormatException e){
+            errorsLog.appendText("Zle zadana suma\n");
+            valid = false;
+
+        }
+
+        return valid;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

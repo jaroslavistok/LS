@@ -21,6 +21,24 @@ public class StatsControllerTS implements Initializable{
     @FXML
     public Label numberOfExpiredMedicamentsLabel;
 
+    @FXML
+    public Label numberOfNonRetaxedRecipes;
+
+    @FXML
+    public Label numberOfMedicamentsInLab;
+
+    @FXML
+    public Label numberOfAllRecipes;
+
+    @FXML
+    public Label numberOfRetaxedRecipes;
+
+    @FXML
+    public Label valueOfMedicaments;
+
+    @FXML
+    public Label incomeLastMonth;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

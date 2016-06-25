@@ -2,10 +2,7 @@ package appCore.transactionScript.rowGateways;
 
 import appCore.transactionScript.db.ConnectionManager;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Date;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +17,7 @@ public class Recipe implements RowDataGateway {
     public int number;
     public int medicamentID;
     public String type;
+    public int recipeBatchID;
 
 
     public static List<Recipe> getAllRecipes(){
@@ -36,9 +34,10 @@ public class Recipe implements RowDataGateway {
                 recipe.date = resultSet.getDate("date");
                 recipe.number = resultSet.getInt("number");
                 recipe.type = resultSet.getString("type");
+                recipe.recipeBatchID = resultSet.getInt("recipe_batch_id");
+                recipe.medicamentID = resultSet.getInt("medicament_id");
                 recipes.add(recipe);
             }
-
             return recipes;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -71,6 +70,7 @@ public class Recipe implements RowDataGateway {
             recipe.number = resultSet.getInt("number");
             recipe.cashRegisterNumber = resultSet.getInt("cash_register_number");
             recipe.type = resultSet.getString("type");
+            recipe.recipeBatchID = resultSet.getInt("recipe_batch_id");
 
             resultSet.close();
             ConnectionManager.close();
@@ -92,15 +92,22 @@ public class Recipe implements RowDataGateway {
     public void insert() {
         try {
             String sql = "INSERT INTO recipes (date, cash_register_number, number, medicament_id, type)" +
-                    "VALUES (?,?,?,?, ?)";
+                    "VALUES (?,?,?,?,?)";
             PreparedStatement preparedStatement =
-                    ConnectionManager.getConnection().prepareStatement(sql);
+                    ConnectionManager.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setDate(1, date);
             preparedStatement.setInt(2, cashRegisterNumber);
             preparedStatement.setInt(3, number);
             preparedStatement.setInt(4, medicamentID);
             preparedStatement.setString(5, type);
+            //preparedStatement.setInt(6, recipeBatchID);
             preparedStatement.executeUpdate();
+
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()){
+                recipeID = resultSet.getInt(1);
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -111,7 +118,7 @@ public class Recipe implements RowDataGateway {
      */
     @Override
     public void update() {
-        String sql = "UPDATE recipes SET date=?, cash_register_number=?, number=?, medicament_id=?, type=?" +
+        String sql = "UPDATE recipes SET date=?, cash_register_number=?, number=?, medicament_id=?, type=?, recipe_batch_id=?" +
                 "WHERE recipe_id=?";
         try {
             PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(sql);
@@ -120,7 +127,8 @@ public class Recipe implements RowDataGateway {
             preparedStatement.setInt(3, number);
             preparedStatement.setInt(4, medicamentID);
             preparedStatement.setString(5, type);
-            preparedStatement.setInt(6, recipeID);
+            preparedStatement.setInt(6, recipeBatchID);
+            preparedStatement.setInt(7, recipeID);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

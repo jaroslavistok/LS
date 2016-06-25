@@ -20,7 +20,7 @@
             <property name="javax.persistence.jdbc.password" value="db1istok7"/>
             <property
                     name="javax.persistence.schema-generation.database.action"
-                    value="drop-and-create"/>
+                    value="none"/>
         </properties>
     </persistence-unit>
 </persistence>

@@ -8,6 +8,9 @@ import javafx.stage.Stage;
 
 public class MainTS extends Application {
 
+    /**
+     * This function loads main application window
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("MainWindowTS.fxml"));

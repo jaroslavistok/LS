@@ -56,19 +56,7 @@ public class Price implements RowDataGateway {
         return null;
     }
 
-    public static double getTotalValueOfAllMedicaments(){
-        try{
-            String sql = "SELECT sum(buyout_price) FROM prices";
-            PreparedStatement preparedStatement = ConnectionManager.getConnection().prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next())
-                return resultSet.getInt(1);
 
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-        return 0;
-    }
 
     /**
      * Inserts row represented by this class to the database
@@ -106,8 +94,8 @@ public class Price implements RowDataGateway {
     public void update() {
         try {
             String sql = "UPDATE prices SET purchase_price=?, pharmacy_profit=? " +
-                    ",insurance_company=?, patient=?, dph=?";
-            String sql1 = "SELECT count(*) FILTER (WHERE login_date >= ? AND login_date <= ?) AS number FROM persons";
+                    ",insurance_company=?, patient=?, dph=?, selling_price=?";
+
             PreparedStatement preparedStatement =
                     ConnectionManager.getConnection().prepareStatement(sql);
 
@@ -116,6 +104,7 @@ public class Price implements RowDataGateway {
             preparedStatement.setBigDecimal(3, insurance_company);
             preparedStatement.setBigDecimal(4, patient);
             preparedStatement.setDouble(5, dph);
+            preparedStatement.setBigDecimal(6, sellingPrice);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

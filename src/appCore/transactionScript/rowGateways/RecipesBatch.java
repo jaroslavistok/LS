@@ -5,6 +5,7 @@ import appCore.transactionScript.db.ConnectionManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * represents row from table recipe_batches in database
@@ -27,7 +28,32 @@ public class RecipesBatch implements RowDataGateway {
         String sql = "SELECT * FROM recipes_batches WHERE recipe_batch_id=?";
         try {
             PreparedStatement statement = ConnectionManager.getConnection().prepareStatement(sql);
-            statement.setString(1, String.valueOf(recipeBatchId));
+            statement.setInt(1, recipeBatchId);
+            ResultSet resultSet = statement.executeQuery();
+            if (!resultSet.next())
+                return null;
+
+            recipesBatch.recipeBatchId = resultSet.getInt("recipe_batch_id");
+            recipesBatch.abbreviation = resultSet.getString("abbreviation");
+            recipesBatch.number = resultSet.getInt("number");
+            recipesBatch.title = resultSet.getString("title");
+
+            resultSet.close();
+            ConnectionManager.close();
+            return recipesBatch;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static RecipesBatch findByNumber(int recipeBatchNumber){
+        RecipesBatch recipesBatch = new RecipesBatch();
+        String sql = "SELECT * FROM recipes_batches WHERE number=?";
+        try {
+            PreparedStatement statement = ConnectionManager.getConnection().prepareStatement(sql);
+            statement.setInt(1, recipeBatchNumber);
             ResultSet resultSet = statement.executeQuery();
             if (!resultSet.next())
                 return null;
@@ -58,11 +84,16 @@ public class RecipesBatch implements RowDataGateway {
             String sql = "INSERT INTO recipes_batches (title, abbreviation, number)" +
                     "VALUES (?,?,?)";
             PreparedStatement preparedStatement =
-                    ConnectionManager.getConnection().prepareStatement(sql);
+                    ConnectionManager.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, title);
             preparedStatement.setString(2, abbreviation);
             preparedStatement.setInt(3, number);
             preparedStatement.executeUpdate();
+
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next())
+                recipeBatchId = resultSet.getInt(1);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -102,5 +133,10 @@ public class RecipesBatch implements RowDataGateway {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public String toString(){
+        return String.format("%d", number);
     }
 }

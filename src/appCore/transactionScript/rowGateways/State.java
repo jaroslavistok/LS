@@ -87,8 +87,8 @@ public class State implements RowDataGateway {
                     "WHERE state_id=?";
             PreparedStatement preparedStatement =
                     ConnectionManager.getConnection().prepareStatement(sql);
-            preparedStatement.setInt(1, stateID);
-            preparedStatement.setString(2, title);
+            preparedStatement.setInt(2, stateID);
+            preparedStatement.setString(1, title);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

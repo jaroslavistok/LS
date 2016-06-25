@@ -1,5 +1,6 @@
 package guiTS;
 import appCore.transactionScript.rowGateways.*;
+import appCore.transactionScript.transactionScripts.Stats;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -68,7 +69,7 @@ public class MainWindowControllerTS implements Initializable {
             RecipesControllerTS recipesController = loader.<RecipesControllerTS>getController();
 
             stage.setTitle("Recepty");
-            stage.setScene(new Scene(root, 800, 500));
+            stage.setScene(new Scene(root, 600, 400));
             stage.showAndWait();
         } catch (IOException e){
             e.printStackTrace();
@@ -84,12 +85,43 @@ public class MainWindowControllerTS implements Initializable {
             Stage stage = new Stage();
             StatsControllerTS controller = loader.<StatsControllerTS>getController();
 
-            int numberOfAllMedicaments = Medicament.getNumberOfAllMedicaments();
+
+            // pocet vsetkych liekov
+            int numberOfAllMedicaments = Stats.getNumberOfAllMedicaments();
             controller.numberOfAllMedicamentsLabel.setText(String.valueOf(numberOfAllMedicaments));
+
+            //pocet liekov na sklade
+            int numberOfMedicamentsInStore = Stats.getNumberOfMedicamentsInStore();
+            controller.numberOfMedicamentsInStoreLabel.setText(String.valueOf(numberOfMedicamentsInStore));
+
+            // pocet expirovanych liekov
+            int numberOfExpiredMedicaments = Stats.getNumberOfExpiredMedicaments();
+            controller.numberOfExpiredMedicamentsLabel.setText(String.valueOf(numberOfExpiredMedicaments));
+
+            //pocet liekov v labaku
+            int numberOfMedicamentsInLab = Stats.getNumberOfMedicamentsInLab();
+            controller.numberOfMedicamentsInLab.setText(String.valueOf(numberOfMedicamentsInLab));
+
+            // pocet vsetkych receptov
+            int numberOfAllRecipes = Stats.getNumberOfAllRecipes();
+            controller.numberOfAllRecipes.setText(String.valueOf(numberOfAllRecipes));
+
+            //pocet retaxovanych
+            int numberOfAllRetaxedRecipes = Stats.getNumberOfRetaxedrecipes();
+            controller.numberOfRetaxedRecipes.setText(String.valueOf(numberOfAllRetaxedRecipes));
+
+            //pocet neretaxovanych
+            int numberOfAllUretaxedRecipes = Stats.getNumberOfUnRetaxedRecipes();
+            controller.numberOfNonRetaxedRecipes.setText(String.valueOf(numberOfAllUretaxedRecipes));
+
+
+            double incomeLastMonth = Stats.getMoneyValueOfAllSoldMedicamentsLastMonth();
+            controller.incomeLastMonth.setText(String.valueOf(incomeLastMonth));
+
 
 
             stage.setTitle("Stats");
-            stage.setScene(new Scene(root, 800, 500));
+            stage.setScene(new Scene(root, 600, 400));
             stage.showAndWait();
         }catch (IOException e){
             e.printStackTrace();
@@ -108,7 +140,7 @@ public class MainWindowControllerTS implements Initializable {
             AddWindowControllerTS controller = loader.<AddWindowControllerTS>getController();
 
             stage.setTitle("Add Window");
-            stage.setScene(new Scene(root, 400, 600));
+            stage.setScene(new Scene(root, 355, 414));
             stage.showAndWait();
 
             if (controller.getMedicament() != null)
@@ -200,7 +232,7 @@ public class MainWindowControllerTS implements Initializable {
                 }
 
                 stage.setTitle("Update Window");
-                stage.setScene(new Scene(root, 400, 600));
+                stage.setScene(new Scene(root, 355, 414));
                 stage.showAndWait();
 
                 if (controller.updated != null){
@@ -228,17 +260,17 @@ public class MainWindowControllerTS implements Initializable {
         medicamentsListView.setItems(medicaments);
         if (!medicaments.isEmpty()){
             medicamentsListView.getSelectionModel().select(0);
+            Medicament medicament = medicamentsListView.getSelectionModel().getSelectedItem();
+            updateInformationLabels(medicament);
         }
 
 
         medicamentsListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             System.out.println("ListView selection changed from oldValue = "
                     + oldValue + " to newValue = " + newValue);
-            // pomocou metod v medicamentCategories povytahujem potrebne udaje a aktualizujem labely
-            // treba srpavit transaction script
+
             if (newValue != null)
                 updateInformationLabels(newValue);
-
 
         });
     }
@@ -247,8 +279,6 @@ public class MainWindowControllerTS implements Initializable {
      * Updates infromation labels with information about given medicamentCategories
      */
     private void updateInformationLabels(Medicament medicament){
-
-        // gets information from db
 
         Price price = Price.findById(medicament.priceID);
 

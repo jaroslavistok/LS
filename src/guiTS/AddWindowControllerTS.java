@@ -4,6 +4,7 @@ import appCore.transactionScript.rowGateways.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.math.BigDecimal;
@@ -48,25 +49,27 @@ public class AddWindowControllerTS implements Initializable {
     @FXML
     TextField buyoutPriceField;
 
+    @FXML
+    TextArea errorsLog;
+
     Medicament insertedMedicament;
 
     public Medicament getMedicament() {
         return insertedMedicament;
     }
 
-    //private Medicament medicamentCategories;
-
     /**
      * veryfi and saves given information to the database
      */
     public void handleOkButtonAction(ActionEvent event){
-        // saves Price information, every medicamentCategories has its own price
+        if (!verifyInputs()){
+            return;
+        }
         Price price = new Price();
         price.buyoutPrice = new BigDecimal(buyoutPriceField.getText());
         price.sellingPrice = new BigDecimal(sellingPriceField.getText());
         price.insert();
 
-        // saves medicamentCategories information, every medicamentCategories has its own information
         MedicamentInformation medicamentInformation = new MedicamentInformation();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         try {
@@ -136,6 +139,77 @@ public class AddWindowControllerTS implements Initializable {
 
         insertedMedicament = medicament;
         titleField.getScene().getWindow().hide();
+    }
+
+
+    private boolean verifyInputs(){
+        boolean valid = true;
+
+        if (titleField.getText().isEmpty()){
+            errorsLog.appendText("Nazov nesmie byt prazdny\n");
+            valid = false;
+        }
+
+        if (codeField.getText().isEmpty()){
+            errorsLog.appendText("Kazdy liek musi obsahovat kod\n");
+            valid = false;
+        }
+
+        if (batchField.getText().isEmpty()){
+            errorsLog.appendText("Kazdy liek musi byt v nejakej davke\n");
+            valid = false;
+        }
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            dateFormat.parse(expirationField.getText());
+            dateFormat.parse(addedField.getText());
+            dateFormat.parse(soldField.getText());
+        } catch (ParseException e){
+            errorsLog.appendText("Zle zadany format datumu\n");
+            valid = false;
+        }
+
+        if (saleCategoriesField.getText().isEmpty()){
+            errorsLog.appendText("predajna kateogria nesmie byt prazdna\n");
+            valid = false;
+
+        }
+
+        if (medicamentCategoriesField.getText().isEmpty()){
+            errorsLog.appendText("kategoria lieku nesmie byt prazdna\n");
+            valid = false;
+
+        }
+
+        if (stateField.getText().isEmpty()){
+            errorsLog.appendText("liek musi mat stav\n");
+            valid = false;
+
+        }
+
+        if (buyoutPriceField.getText().isEmpty()){
+            errorsLog.appendText("nakupna cena musi byt vyplnena\n");
+            valid = false;
+
+        }
+
+        if (sellingPriceField.getText().isEmpty()){
+            errorsLog.appendText("predajna cena musi byt vyplnena\n");
+            valid = false;
+
+        }
+
+        try{
+            BigDecimal bigDecimal = new BigDecimal(buyoutPriceField.getText());
+            bigDecimal = new BigDecimal(sellingPriceField.getText());
+        }catch (NumberFormatException e){
+            errorsLog.appendText("Zle zadana suma\n");
+            valid = false;
+
+        }
+
+        return valid;
     }
 
     @Override
