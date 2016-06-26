@@ -1,7 +1,5 @@
 package appCore.dataMapper;
 
-import appCore.domainModel.MedicamentSelects;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 

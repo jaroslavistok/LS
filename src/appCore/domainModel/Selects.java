@@ -1,13 +1,14 @@
 package appCore.domainModel;
 
 import appCore.dataMapper.Medicament;
+import appCore.dataMapper.Recipe;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.util.List;
 
-public class MedicamentSelects {
+public class Selects {
     public List<Medicament> getAllMedicaments(){
         EntityManager entityManager = Persistence.createEntityManagerFactory("NewPersistenceUnit").createEntityManager();
 
@@ -21,6 +22,20 @@ public class MedicamentSelects {
 
         entityManager.getTransaction().commit();
         return medicamentList;
+    }
+
+    public List<Recipe> getAllRecipes(){
+        EntityManager entityManager = Persistence.createEntityManagerFactory("NewPersistenceUnit").createEntityManager();
+
+        entityManager.getTransaction().begin();
+
+        Query query = entityManager.createQuery("SELECT e from Recipe e");
+        List<Recipe> recipeList = (List<Recipe>) query.getResultList();
+        for (Recipe recipe : recipeList){
+            System.out.println(recipe);
+        }
+        entityManager.getTransaction().commit();
+        return recipeList;
     }
 
 

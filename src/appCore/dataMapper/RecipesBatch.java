@@ -9,6 +9,7 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "recipes_batches")
+@NamedQuery(name = "find by number", query = "SELECT r FROM RecipesBatch r WHERE r.number=:number")
 public class RecipesBatch {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "recipe_batch_id")
@@ -20,5 +21,10 @@ public class RecipesBatch {
 
     @OneToMany(mappedBy = "recipesBatch")
     Collection<Recipe> recipes;
+
+    @Override
+    public String toString(){
+        return String.format("%d", number);
+    }
 
 }

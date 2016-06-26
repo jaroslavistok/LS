@@ -19,7 +19,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.ParseException;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -90,11 +89,11 @@ public class RecipesControllerTS implements Initializable{
     public void handleAddRecipeButtonAction(ActionEvent event){
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("RecipeAdd.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("RecipeAddTS.fxml"));
             Parent root = (Parent) loader.load();
 
             Stage stage = new Stage();
-            RecipeAddController recipeAddController = loader.<RecipeAddController>getController();
+            RecipeAddControllerTS recipeAddController = loader.<RecipeAddControllerTS>getController();
 
             stage.setTitle("Pridavanie receptov");
             stage.setScene(new Scene(root, 370, 398));
@@ -130,6 +129,13 @@ public class RecipesControllerTS implements Initializable{
     }
 
     private void updateLabels(Recipe recipe){
+        recipeNumberLabel.setText("");
+        cashRegisterNumberLabel.setText("");
+        dateLabel.setText("");
+        typeLabel.setText("");
+        medicamentLabel.setText("");
+        batchLabel.setText("");
+
         cashRegisterNumberLabel.setText(String.valueOf(recipe.cashRegisterNumber));
         dateLabel.setText(recipe.date.toString());
         recipeNumberLabel.setText(String.valueOf(recipe.number));

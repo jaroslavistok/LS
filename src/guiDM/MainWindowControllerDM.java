@@ -4,7 +4,8 @@ import appCore.dataMapper.Medicament;
 import appCore.dataMapper.MedicamentCategory;
 import appCore.dataMapper.MedicamentInformation;
 import appCore.dataMapper.Price;
-import appCore.domainModel.MedicamentSelects;
+import appCore.domainModel.Selects;
+import appCore.domainModel.Stats;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +21,7 @@ import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -91,11 +93,29 @@ public class MainWindowControllerDM implements Initializable {
             Stage stage = new Stage();
             StatsControllerDM controller = loader.<StatsControllerDM>getController();
 
-            int numberOfAllMedicaments = 0;
+            Stats stats = new Stats();
+
+            long numberOfAllMedicaments = stats.getNumberOfMedicaments();
             controller.numberOfAllMedicamentsLabel.setText(String.valueOf(numberOfAllMedicaments));
 
+            long numberOfMedicamentsInStore = stats.getNumberOfMedicamentsInStore();
+            controller.numberOfMedicamentsInStoreLabel.setText(String.valueOf(numberOfMedicamentsInStore));
+
+            long numberOfMedicamentsInLab = stats.getNumberOfMedicamentsInLab();
+            controller.numberOfMedicamentsInLab.setText(String.valueOf(numberOfMedicamentsInLab));
+
+            long numberOfSoldMedicaments = stats.getNumberOfSoldMedicaments();
+            controller.numberOfSoldMedicamentsLabel.setText(String.valueOf(numberOfSoldMedicaments));
+
+            long numberOfExpiredMedicaments = stats.getNumberOfExpiredMedicaments();
+            controller.numberOfExpiredMedicamentsLabel.setText(String.valueOf(numberOfExpiredMedicaments));
+
+            BigDecimal totalValue = stats.getTotalMoneyValueOfAllMedicamentsInStore();
+            controller.valueOfMedicaments.setText(totalValue.toString());
+
+
             stage.setTitle("Stats");
-            stage.setScene(new Scene(root, 355, 414));
+            stage.setScene(new Scene(root, 569, 322));
             stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
@@ -129,32 +149,31 @@ public class MainWindowControllerDM implements Initializable {
      * handler, deletes selected item form database and from listView
      */
     public void handleDeleteButtonAction(ActionEvent event) {
-        ObservableList<Medicament> toDelete = medicamentsListView.getSelectionModel().getSelectedItems();
-        for (Medicament item : toDelete) {
+        Medicament toDelete = medicamentsListView.getSelectionModel().getSelectedItem();
             EntityManager entityManager = Persistence.createEntityManagerFactory("NewPersistenceUnit").createEntityManager();
             entityManager.getTransaction().begin();
+            toDelete = entityManager.find(Medicament.class, toDelete.medicamentId);
 
-            if (item.price != null) {
-                Price price = entityManager.find(Price.class, item.price.priceId);
+            if (toDelete.price != null) {
+                Price price = entityManager.find(Price.class, toDelete.price.priceId);
                 if (price != null)
                     entityManager.remove(price);
             }
-            if (item.medicamentInformation != null) {
-                MedicamentInformation medicamentInformation = entityManager.find(MedicamentInformation.class, item.medicamentInformation.medicamentInformationID);
+            if (toDelete.medicamentInformation != null) {
+                MedicamentInformation medicamentInformation = entityManager.find(MedicamentInformation.class, toDelete.medicamentInformation.medicamentInformationID);
                 if (medicamentInformation != null) {
                     entityManager.remove(medicamentInformation);
                 }
             }
 
-            Medicament medicament = entityManager.find(Medicament.class, item.medicamentId);
-            entityManager.remove(medicament);
+            Medicament medicament = entityManager.find(Medicament.class, toDelete.medicamentId);
 
+            entityManager.remove(medicament);
+            medicaments.remove(toDelete);
             entityManager.getTransaction().commit();
-            medicaments.remove(item);
+
         }
 
-
-    }
 
     public void handleUpdateButton(ActionEvent event) {
         try {
@@ -226,14 +245,17 @@ public class MainWindowControllerDM implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        MedicamentSelects medicamentSelects = new MedicamentSelects();
-        medicamentsList = medicamentSelects.getAllMedicaments();
+        Selects selects = new Selects();
+        medicamentsList = selects.getAllMedicaments();
 
         medicaments = FXCollections.observableArrayList(medicamentsList);
 
         medicamentsListView.setItems(medicaments);
         if (!medicaments.isEmpty()) {
             medicamentsListView.getSelectionModel().select(0);
+            Medicament medicament= medicamentsListView.getSelectionModel().getSelectedItem();
+            updateInformationLabels(medicament);
+
         }
 
 
@@ -252,6 +274,19 @@ public class MainWindowControllerDM implements Initializable {
      * Updates infromation labels with information about given medicamentCategories
      */
     private void updateInformationLabels(Medicament medicament) {
+        titleLabel.setText("");
+        codeLabel.setText("");
+        batchLabel.setText("");
+        addedLabel.setText("");
+        expirationLabel.setText("");
+        soldLabel.setText("");
+        stateLabel.setText("");
+        saleCategoryLabel.setText("");
+        medicamentCategoryLabel.setText("");
+        sellingPriceLabel.setText("");
+        buyoutPriceLabel.setText("");
+
+
         EntityManager entityManager = Persistence.createEntityManagerFactory("NewPersistenceUnit").createEntityManager();
 
         entityManager.getTransaction().begin();

@@ -1,17 +1,22 @@
-package guiTS;
+package guiDM;
 
-import appCore.transactionScript.rowGateways.Medicament;
-import appCore.transactionScript.rowGateways.Recipe;
+import appCore.dataMapper.Medicament;
+import appCore.dataMapper.Recipe;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-public class RecipeAddController implements Initializable {
+public class RecipeAddControllerDM implements Initializable {
 
     @FXML
     public TextField cashRegisterNumberField;
@@ -33,21 +38,35 @@ public class RecipeAddController implements Initializable {
     public void handleAddRecipeButtonAction(ActionEvent event){
         if (!validateInputs())
             return;
-
+        EntityManager entityManager = Persistence.createEntityManagerFactory("NewPersistenceUnit").createEntityManager();
+        entityManager.getTransaction().begin();
         Recipe recipe = new Recipe();
+        entityManager.persist(recipe);
         recipe.cashRegisterNumber = Integer.parseInt(cashRegisterNumberField.getText());
         recipe.number = Integer.parseInt(recipeNumberField.getText());
+        entityManager.getTransaction().commit();
 
-        // sets the current time
-        Date date = new java.util.Date();
+        entityManager.getTransaction().begin();
+        Date date = new Date();
         recipe.date = new java.sql.Date(date.getTime());
         recipe.type = recipeTypeField.getText();
+        entityManager.getTransaction().commit();
 
-        Medicament medicament = Medicament.findBuTitle(medicamentField.getText());
-        if (medicament != null)
-            recipe.medicamentID = medicament.medicamentID;
-        recipe.insert();
+        entityManager.getTransaction().begin();
+        Query query = entityManager.createNamedQuery("find by title");
+        query.setParameter("title", medicamentField.getText());
+
+        try {
+            Medicament medicament = (Medicament) query.getSingleResult();
+            if (recipe.medicament != null)
+                recipe.medicament.medicamentId = medicament.medicamentId;
+        } catch (NoResultException e){
+            Medicament medicament = new Medicament();
+            entityManager.persist(medicament);
+            recipe.medicament.medicamentId = medicament.medicamentId;
+        }
         insertedRecipe = recipe;
+        entityManager.getTransaction().commit();
     }
 
     public boolean validateInputs(){
@@ -72,8 +91,15 @@ public class RecipeAddController implements Initializable {
             valid = false;
         }
 
-        Medicament medicament = Medicament.findBuTitle(medicamentField.getText());
-        if (medicament == null){
+        EntityManager entityManager = Persistence.createEntityManagerFactory("NewPersistenceUnit").createEntityManager();
+        entityManager.getTransaction().begin();
+        Query query = entityManager.createNamedQuery("find by title");
+        query.setParameter("title", medicamentField.getText());
+
+        try {
+            Medicament medicament = (Medicament) query.getSingleResult();
+
+        }catch (NoResultException e){
             errorLog.appendText("Liek neexsituje v databze\n");
             valid = false;
         }

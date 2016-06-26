@@ -1,6 +1,7 @@
 package guiDM;
 
 import appCore.dataMapper.*;
+import appCore.domainModel.Stats;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,6 +9,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.math.BigDecimal;
@@ -15,6 +17,7 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -71,7 +74,6 @@ public class AddWindowControllerDM implements Initializable {
             return;
         }
 
-
         EntityManager entityManager = Persistence.createEntityManagerFactory("NewPersistenceUnit").createEntityManager();
         entityManager.getTransaction().begin();
 
@@ -97,36 +99,49 @@ public class AddWindowControllerDM implements Initializable {
 
         Query query = entityManager.createNamedQuery("Find category by title", SaleCategory.class);
         query.setParameter("title", saleCategoriesField.getText());
-        List<SaleCategory> saleCategoryList = query.getResultList();
 
-        SaleCategory saleCategory = new SaleCategory();
-        if (saleCategoryList.size() == 0) {
-            saleCategory.title = saleCategoriesField.getText();
+        SaleCategory saleCategory;
+        try {
+            saleCategory = (SaleCategory) query.getSingleResult();
+        }catch (NoResultException e){
+            saleCategory = new SaleCategory();
             entityManager.persist(saleCategory);
-        } else {
-            saleCategory = saleCategoryList.get(0);
+            saleCategory.title = saleCategoriesField.getText();
         }
 
-        query = entityManager.createNamedQuery("find by name", SaleCategory.class);
+        query = entityManager.createNamedQuery("find by name", MedicamentCategory.class);
         query.setParameter("title", medicamentCategoriesField.getText());
-        List<MedicamentCategory> medicamentCategories = query.getResultList();
-
-        MedicamentCategory medicamentCategory = new MedicamentCategory();
-        if (medicamentCategories.size() == 0) {
-            medicamentCategory.title = medicamentCategoriesField.getText();
+        MedicamentCategory medicamentCategory;
+        try {
+            medicamentCategory = (MedicamentCategory) query.getSingleResult();
+        }catch (NoResultException e){
+            medicamentCategory = new MedicamentCategory();
             entityManager.persist(medicamentCategory);
-        } else {
-            medicamentCategory = medicamentCategories.get(0);
+            medicamentCategory.title =medicamentCategoriesField.getText();
+        }
+
+        Query query1 = entityManager.createNamedQuery("find state by title", State.class);
+        query1.setParameter("title", titleField.getText());
+        State state;
+
+        try{
+            state = (State) query1.getSingleResult();
+        }catch (NoResultException e){
+            state = new State();
+            entityManager.persist(state);
+            state.title = titleField.getText();
         }
 
         Medicament medicament = new Medicament();
+        medicament.medicamentCategories = new HashSet<>();
+        medicament.medicamentCategories.add(medicamentCategory);
         medicament.price = price;
         medicament.saleCategory =saleCategory;
-        medicament.medicamentCategories = medicamentCategories;
         medicament.medicamentInformation = medicamentInformation;
         medicament.title = titleField.getText();
         medicament.code = codeField.getText();
         medicament.batch = batchField.getText();
+        medicament.state = state;
         entityManager.persist(medicament);
 
         entityManager.getTransaction().commit();

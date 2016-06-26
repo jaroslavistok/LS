@@ -3,7 +3,6 @@ package appCore.dataMapper;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Collection;
 
 @Entity
 @Table(name = "price_history")
@@ -19,7 +18,7 @@ public class PriceHistory {
     public java.sql.Timestamp timestamp;
 
     @ManyToOne
-    @JoinColumn(name = "medicament_id")
+    @JoinColumn(name = "price_id")
     public Medicament medicament;
 
 }

@@ -7,6 +7,7 @@ import java.util.Collection;
  */
 @Entity
 @Table(name="medicaments")
+@NamedQuery(name = "find by title", query = "SELECT m FROM Medicament m WHERE m.title=:title")
 public class Medicament {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "medicament_id")

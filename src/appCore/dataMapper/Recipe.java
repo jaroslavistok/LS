@@ -22,12 +22,12 @@ public class Recipe {
 
     @OneToOne
     @JoinColumn(name = "medicament_id")
-    Medicament medicament;
+    public Medicament medicament;
 
 
     @ManyToOne
     @JoinColumn(name="recipe_batch_id")
-    RecipesBatch recipesBatch;
+    public RecipesBatch recipesBatch;
 
 
     @Override

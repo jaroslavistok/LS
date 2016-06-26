@@ -280,6 +280,19 @@ public class MainWindowControllerTS implements Initializable {
      */
     private void updateInformationLabels(Medicament medicament){
 
+        titleLabel.setText("");
+        codeLabel.setText("");
+        batchLabel.setText("");
+        addedLabel.setText("");
+        expirationLabel.setText("");
+        soldLabel.setText("");
+        stateLabel.setText("");
+        saleCategoryLabel.setText("");
+        medicamentCategoryLabel.setText("");
+        sellingPriceLabel.setText("");
+        buyoutPriceLabel.setText("");
+
+
         Price price = Price.findById(medicament.priceID);
 
         MedicamentInformation medicamentInformation = MedicamentInformation.findByID(medicament.medicamentInformationID);
