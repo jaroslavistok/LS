@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="414.0" prefWidth="355.0" xmlns="http://javafx.com/javafx/8.0.92" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiDM.AddWindowControllerDM">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="414.0" prefWidth="355.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiDM.AddWindowControllerDM">
    <children>
       <GridPane layoutX="1.0" prefHeight="295.0" prefWidth="348.0" AnchorPane.bottomAnchor="119.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -25,12 +31,12 @@
             <RowConstraints maxHeight="266.0" minHeight="0.0" prefHeight="0.0" valignment="CENTER" />
         </rowConstraints>
          <children>
-            <TextField fx:id="titleField" promptText="Nazov" />
+            <TextField fx:id="titleField" promptText="Nazov lieku" />
             <TextField fx:id="batchField" promptText="Cislo davky" GridPane.rowIndex="2" />
-            <TextField fx:id="soldField" promptText="Predane" GridPane.rowIndex="4" />
-            <TextField fx:id="stateField" promptText="Stav" GridPane.rowIndex="5" />
-            <TextField fx:id="codeField" promptText="Kod" GridPane.rowIndex="1" />
-            <TextField fx:id="addedField" promptText="Pridane" GridPane.rowIndex="3" />
+            <TextField fx:id="soldField" promptText="Predane format datumu dd.MM.yyyy" GridPane.rowIndex="4" />
+            <TextField fx:id="stateField" promptText="Stav (na skalde, predany...)" GridPane.rowIndex="5" />
+            <TextField fx:id="codeField" promptText="Kod lieku" GridPane.rowIndex="1" />
+            <TextField fx:id="addedField" promptText="Pridane format datumu dd.MM.yyyy" GridPane.rowIndex="3" />
             <TextField fx:id="saleCategoriesField" promptText="Predajna kategoria" GridPane.rowIndex="6" />
             <TextField fx:id="medicamentCategoriesField" promptText="Kategoria lieku" GridPane.rowIndex="7" />
             <TextField fx:id="sellingPriceField" prefHeight="37.0" prefWidth="344.0" promptText="Nakupna cena" GridPane.rowIndex="8" />
@@ -38,6 +44,7 @@
             <TextField fx:id="buyoutPriceField" promptText="Nakupna cena" GridPane.rowIndex="9" />
          </children>
       </GridPane>
-      <Button layoutX="136.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleOkButtonAction" text="Pridaj liek" />
+      <Button layoutX="250.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleOkButtonAction" text="Pridaj liek" />
+      <TextArea fx:id="errorsLog" layoutX="14.0" layoutY="306.0" prefHeight="92.0" prefWidth="208.0" />
    </children>
 </AnchorPane>

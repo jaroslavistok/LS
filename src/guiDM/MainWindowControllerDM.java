@@ -95,7 +95,7 @@ public class MainWindowControllerDM implements Initializable {
             controller.numberOfAllMedicamentsLabel.setText(String.valueOf(numberOfAllMedicaments));
 
             stage.setTitle("Stats");
-            stage.setScene(new Scene(root, 800, 500));
+            stage.setScene(new Scene(root, 355, 414));
             stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
@@ -114,7 +114,7 @@ public class MainWindowControllerDM implements Initializable {
             AddWindowControllerDM controller = loader.<AddWindowControllerDM>getController();
 
             stage.setTitle("Add Window");
-            stage.setScene(new Scene(root, 400, 600));
+            stage.setScene(new Scene(root, 355, 414));
             stage.showAndWait();
 
             if (controller.getMedicament() != null)
@@ -141,7 +141,7 @@ public class MainWindowControllerDM implements Initializable {
             }
             if (item.medicamentInformation != null) {
                 MedicamentInformation medicamentInformation = entityManager.find(MedicamentInformation.class, item.medicamentInformation.medicamentInformationID);
-                if (medicamentInformation != null){
+                if (medicamentInformation != null) {
                     entityManager.remove(medicamentInformation);
                 }
             }
@@ -154,33 +154,67 @@ public class MainWindowControllerDM implements Initializable {
         }
 
 
-
-
     }
 
     public void handleUpdateButton(ActionEvent event) {
         try {
-            ObservableList<Medicament> toUpdate = medicamentsListView.getSelectionModel().getSelectedItems();
+            Medicament medicament = medicamentsListView.getSelectionModel().getSelectedItem();
 
-            if (!toUpdate.isEmpty()) {
-                Medicament medicament = toUpdate.get(0);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("UpdateDM.fxml"));
+            Parent root = (Parent) loader.load();
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("UpdateDM.fxml"));
-                Parent root = (Parent) loader.load();
+            Stage stage = new Stage();
+            UpdateControllerDM controller = loader.<UpdateControllerDM>getController();
 
-                Stage stage = new Stage();
-                UpdateControllerDM controller = loader.<UpdateControllerDM>getController();
+            controller.titleField.setText(medicament.title);
+            controller.codeField.setText(medicament.code);
+            controller.batchField.setText(medicament.batch);
 
-                controller.titleField.setText("");
-                controller.codeField.setText("");
-                controller.batchField.setText("");
+            EntityManager entityManager = Persistence.createEntityManagerFactory("NewPersistenceUnit").createEntityManager();
+            entityManager.getTransaction().begin();
 
-                stage.setTitle("Update Window");
-                stage.setScene(new Scene(root, 400, 600));
-                stage.showAndWait();
-
+            if (medicament.medicamentInformation != null) {
+                if (medicament.medicamentInformation.expiration != null)
+                    controller.expirationField.setText(medicament.medicamentInformation.expiration.toString());
+                if (medicament.medicamentInformation.added != null)
+                    controller.addedField.setText(medicament.medicamentInformation.added.toString());
+                if (medicament.medicamentInformation.sold != null)
+                    controller.soldField.setText(medicament.medicamentInformation.sold.toString());
             }
 
+
+            if (medicament.state != null) {
+                if (medicament.state.title != null)
+                    controller.stateField.setText(medicament.state.title);
+            }
+
+            if (medicament.price != null) {
+                if (medicament.price.buyoutPrice != null)
+                    controller.buyoutPriceField.setText(medicament.price.buyoutPrice.toString());
+                if (medicament.price.seelingPrice != null)
+                    controller.sellingPriceField.setText(medicament.price.seelingPrice.toString());
+            }
+
+
+            if (medicament.saleCategory != null){
+                if (medicament.saleCategory.title != null)
+                    controller.saleCategoriesField.setText(medicament.saleCategory.title);
+            }
+
+            if (!medicament.medicamentCategories.isEmpty()){
+                for (MedicamentCategory medicamentCategory : medicament.medicamentCategories){
+                    if (medicamentCategory.title != null)
+                        controller.medicamentCategoriesField.setText(medicamentCategory.title);
+                }
+            }
+
+            controller.medicamentToUpdate = medicament;
+
+            stage.setTitle("Update Window");
+            stage.setScene(new Scene(root, 355, 414));
+            stage.showAndWait();
+
+            updateInformationLabels(medicament);
         } catch (IOException e) {
             e.printStackTrace();
         }

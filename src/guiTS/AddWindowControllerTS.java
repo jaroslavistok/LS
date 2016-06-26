@@ -143,6 +143,7 @@ public class AddWindowControllerTS implements Initializable {
 
 
     private boolean verifyInputs(){
+        errorsLog.setText("");
         boolean valid = true;
 
         if (titleField.getText().isEmpty()){
