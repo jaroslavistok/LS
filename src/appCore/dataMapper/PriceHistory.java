@@ -18,7 +18,7 @@ public class PriceHistory {
     public java.sql.Timestamp timestamp;
 
     @ManyToOne
-    @JoinColumn(name = "price_id")
+    @JoinColumn(name = "medicament_id")
     public Medicament medicament;
 
 }

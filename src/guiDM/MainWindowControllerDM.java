@@ -110,12 +110,11 @@ public class MainWindowControllerDM implements Initializable {
             long numberOfExpiredMedicaments = stats.getNumberOfExpiredMedicaments();
             controller.numberOfExpiredMedicamentsLabel.setText(String.valueOf(numberOfExpiredMedicaments));
 
-            BigDecimal totalValue = stats.getTotalMoneyValueOfAllMedicamentsInStore();
-            controller.valueOfMedicaments.setText(totalValue.toString());
+
 
 
             stage.setTitle("Stats");
-            stage.setScene(new Scene(root, 569, 322));
+            stage.setScene(new Scene(root, 600, 400));
             stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
@@ -150,6 +149,7 @@ public class MainWindowControllerDM implements Initializable {
      */
     public void handleDeleteButtonAction(ActionEvent event) {
         Medicament toDelete = medicamentsListView.getSelectionModel().getSelectedItem();
+        medicaments.remove(toDelete);
             EntityManager entityManager = Persistence.createEntityManagerFactory("NewPersistenceUnit").createEntityManager();
             entityManager.getTransaction().begin();
             toDelete = entityManager.find(Medicament.class, toDelete.medicamentId);
@@ -169,7 +169,7 @@ public class MainWindowControllerDM implements Initializable {
             Medicament medicament = entityManager.find(Medicament.class, toDelete.medicamentId);
 
             entityManager.remove(medicament);
-            medicaments.remove(toDelete);
+
             entityManager.getTransaction().commit();
 
         }
@@ -264,7 +264,16 @@ public class MainWindowControllerDM implements Initializable {
                     + oldValue + " to newValue = " + newValue);
             // pomocou metod v medicamentCategories povytahujem potrebne udaje a aktualizujem labely
             // treba srpavit transaction script
-            updateInformationLabels(newValue);
+
+
+            EntityManager entityManager = Persistence.createEntityManagerFactory("NewPersistenceUnit").createEntityManager();
+            entityManager.getTransaction().begin();
+
+            if (newValue != null) {
+                Medicament medicament = entityManager.find(Medicament.class, newValue.medicamentId);
+
+                updateInformationLabels(medicament);
+            }
 
 
         });

@@ -75,15 +75,17 @@ public class AddWindowControllerDM implements Initializable {
         }
 
         EntityManager entityManager = Persistence.createEntityManagerFactory("NewPersistenceUnit").createEntityManager();
+
         entityManager.getTransaction().begin();
-
-
         Price price = new Price();
+        entityManager.persist(price);
         price.seelingPrice = new BigDecimal(sellingPriceField.getText());
         price.buyoutPrice = new BigDecimal(buyoutPriceField.getText());
-        entityManager.persist(price);
+        entityManager.getTransaction().commit();
 
         MedicamentInformation medicamentInformation = new MedicamentInformation();
+        entityManager.getTransaction().begin();
+        entityManager.persist(medicamentInformation);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         try {
             Date expirationDate = dateFormat.parse(expirationField.getText());
@@ -95,11 +97,11 @@ public class AddWindowControllerDM implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        entityManager.persist(medicamentInformation);
+        entityManager.getTransaction().commit();
 
+        entityManager.getTransaction().begin();
         Query query = entityManager.createNamedQuery("Find category by title", SaleCategory.class);
         query.setParameter("title", saleCategoriesField.getText());
-
         SaleCategory saleCategory;
         try {
             saleCategory = (SaleCategory) query.getSingleResult();
@@ -108,7 +110,9 @@ public class AddWindowControllerDM implements Initializable {
             entityManager.persist(saleCategory);
             saleCategory.title = saleCategoriesField.getText();
         }
+        entityManager.getTransaction().commit();
 
+        entityManager.getTransaction().begin();
         query = entityManager.createNamedQuery("find by name", MedicamentCategory.class);
         query.setParameter("title", medicamentCategoriesField.getText());
         MedicamentCategory medicamentCategory;
@@ -119,11 +123,12 @@ public class AddWindowControllerDM implements Initializable {
             entityManager.persist(medicamentCategory);
             medicamentCategory.title =medicamentCategoriesField.getText();
         }
+        entityManager.getTransaction().commit();
 
+        entityManager.getTransaction().begin();
         Query query1 = entityManager.createNamedQuery("find state by title", State.class);
         query1.setParameter("title", titleField.getText());
         State state;
-
         try{
             state = (State) query1.getSingleResult();
         }catch (NoResultException e){
@@ -131,8 +136,12 @@ public class AddWindowControllerDM implements Initializable {
             entityManager.persist(state);
             state.title = titleField.getText();
         }
+        entityManager.getTransaction().commit();
 
+
+        entityManager.getTransaction().begin();
         Medicament medicament = new Medicament();
+        entityManager.persist(medicament);
         medicament.medicamentCategories = new HashSet<>();
         medicament.medicamentCategories.add(medicamentCategory);
         medicament.price = price;
@@ -142,7 +151,6 @@ public class AddWindowControllerDM implements Initializable {
         medicament.code = codeField.getText();
         medicament.batch = batchField.getText();
         medicament.state = state;
-        entityManager.persist(medicament);
 
         entityManager.getTransaction().commit();
         System.out.println("Added");

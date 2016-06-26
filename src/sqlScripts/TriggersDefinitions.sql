@@ -3,8 +3,8 @@
 CREATE FUNCTION save_price_history() RETURNS TRIGGER
   LANGUAGE plpgsql AS $$
     BEGIN
-      INSERT INTO price_history (price_id, timestamp, price)
-      VALUES (NEW.price_id, current_timestamp, NEW.buyout_price);
+      INSERT INTO price_history (medicament_id, timestamp, price)
+      VALUES ((SELECT medicament_id FROM medicaments WHERE price_id=NEW.price_id LIMIT 1), current_timestamp, NEW.buyout_price);
       RETURN NEW;
     END;
   $$;

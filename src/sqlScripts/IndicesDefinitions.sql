@@ -1,7 +1,7 @@
 /* Optimalizacia frekventovanych selectov podla stlpcov, ktore su pouzivane najviac v joinoch a where podmienke*/
 
 CREATE INDEX medicamentIdIndex ON medicaments(medicament_id);
-CREATE INDEX medicamentIdIndex ON medicaments(title);
+CREATE INDEX medicamentTitleIndex ON medicaments(title);
 
 CREATE INDEX medicamentCategoryIdIndex ON medicaments_categories(medicament_category_id);
 CREATE INDEX medicamentCategoryTitleIndex ON medicaments_categories(title);
@@ -15,3 +15,10 @@ CREATE INDEX medicamentInformationIdIndex ON medicament_information(medicament_i
 
 CREATE INDEX stateIdIndex ON states(state_id);
 CREATE INDEX stateTitleIndex ON states(title);
+
+
+/* Demonstracia indexu */
+
+DROP INDEX medicamentIdIndex;
+
+EXPLAIN ANALYZE SELECT medicament_id FROM medicaments WHERE medicament_id > 1000;

@@ -142,6 +142,9 @@ public class RecipesControllerDM implements Initializable{
     }
 
     private void updateLabels(Recipe recipe){
+        if (recipe == null)
+            return;
+
         recipeNumberLabel.setText("");
         cashRegisterNumberLabel.setText("");
         dateLabel.setText("");
@@ -164,6 +167,8 @@ public class RecipesControllerDM implements Initializable{
         EntityManager entityManager = Persistence.createEntityManagerFactory("NewPersistenceUnit").createEntityManager();
 
         entityManager.getTransaction().begin();
+
+        recipe = entityManager.find(Recipe.class, recipe.recipeID);
 
         if (recipe.medicament != null) {
             Medicament medicament = entityManager.find(Medicament.class, recipe.medicament.medicamentId);

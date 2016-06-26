@@ -58,15 +58,17 @@ public class RecipeAddControllerDM implements Initializable {
 
         try {
             Medicament medicament = (Medicament) query.getSingleResult();
-            if (recipe.medicament != null)
-                recipe.medicament.medicamentId = medicament.medicamentId;
+            if (medicament != null)
+            recipe.medicament = medicament;
         } catch (NoResultException e){
             Medicament medicament = new Medicament();
             entityManager.persist(medicament);
-            recipe.medicament.medicamentId = medicament.medicamentId;
+            recipe.medicament = medicament;
         }
         insertedRecipe = recipe;
         entityManager.getTransaction().commit();
+
+        cashRegisterNumberField.getScene().getWindow().hide();
     }
 
     public boolean validateInputs(){
@@ -95,6 +97,7 @@ public class RecipeAddControllerDM implements Initializable {
         entityManager.getTransaction().begin();
         Query query = entityManager.createNamedQuery("find by title");
         query.setParameter("title", medicamentField.getText());
+        entityManager.getTransaction().commit();
 
         try {
             Medicament medicament = (Medicament) query.getSingleResult();
