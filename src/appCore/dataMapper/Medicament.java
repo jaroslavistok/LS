@@ -50,6 +50,9 @@ public class Medicament {
 
     }
 
+    /**
+     *Constructor
+     */
     public Medicament(String batch, String title, String code){
         this.batch = batch;
         this.title = title;

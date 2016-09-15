@@ -25,7 +25,7 @@ CREATE TABLE medicaments
   state_id INTEGER,
   CONSTRAINT fk_medicaments_sale_category_id FOREIGN KEY (sale_category_id) REFERENCES sale_categories (sale_category_id),
   CONSTRAINT fk_medicaments_medicament_information_id FOREIGN KEY (medicament_information_id) REFERENCES medicament_information (medicament_information_id),
-  CONSTRAINT fk_medicaments_price_id FOREIGN KEY (price_id) REFERENCES prices (price_id),
+  CONSTRAINT fk_medicaments_price_id FOREIGN KEY (price_id) REFERENCES prices(price_id),
   CONSTRAINT fk_medicaments_state_id FOREIGN KEY (state_id) REFERENCES states (state_id)
 );
 CREATE TABLE medicaments_categories
@@ -33,6 +33,14 @@ CREATE TABLE medicaments_categories
   medicament_category_id INTEGER PRIMARY KEY NOT NULL,
   additional_information VARCHAR(255),
   title VARCHAR(255)
+);
+CREATE TABLE price_history
+(
+  price_history_id INTEGER PRIMARY KEY NOT NULL,
+  price NUMERIC(38),
+  timestamp TIMESTAMP,
+  medicament_id INTEGER,
+  CONSTRAINT fk_price_history_medicament_id FOREIGN KEY (medicament_id) REFERENCES medicaments (medicament_id)
 );
 CREATE TABLE prices
 (

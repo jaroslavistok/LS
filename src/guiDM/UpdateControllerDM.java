@@ -56,6 +56,7 @@ public class UpdateControllerDM implements Initializable {
     TextArea errorsLog;
 
     public Medicament medicamentToUpdate;
+    public Medicament updated;
 
     public void handleUpdateButtonAction(ActionEvent event) {
         if (!verifyInputs())
@@ -169,6 +170,7 @@ public class UpdateControllerDM implements Initializable {
         }
 
         System.out.println("Updated");
+        updated = m;
 
         titleField.getScene().getWindow().hide();
     }

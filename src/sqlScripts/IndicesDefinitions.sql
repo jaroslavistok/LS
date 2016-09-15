@@ -19,6 +19,6 @@ CREATE INDEX stateTitleIndex ON states(title);
 
 /* Demonstracia indexu */
 
-DROP INDEX medicamentIdIndex;
+DROP INDEX medicamentTitleIndex;
 
-EXPLAIN ANALYZE SELECT medicament_id FROM medicaments WHERE medicament_id > 1000;
+EXPLAIN ANALYZE SELECT medicament_id FROM medicaments WHERE title ='fwbfe';

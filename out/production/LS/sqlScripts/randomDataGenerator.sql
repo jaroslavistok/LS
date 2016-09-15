@@ -17,8 +17,8 @@ $$ language plpgsql;
 
 
 INSERT INTO medicaments (title, code, batch)
-    SELECT
-      random_string(10) As title,
-      random_string(10) As code,
-      random_string(10) As batch
-    FROM generate_series(1, 10000);
+  SELECT
+    random_string(10) As title,
+    random_string(10) As code,
+    random_string(10) As batch
+  FROM generate_series(1, 100000);

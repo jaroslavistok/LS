@@ -74,13 +74,40 @@ public class AddWindowControllerDM implements Initializable {
             return;
         }
 
+
+
         EntityManager entityManager = Persistence.createEntityManagerFactory("NewPersistenceUnit").createEntityManager();
+
+
+        entityManager.getTransaction().begin();
+        Medicament medicament = new Medicament();
+        entityManager.persist(medicament);
+        medicament.title = titleField.getText();
+        medicament.code = codeField.getText();
+        medicament.batch = batchField.getText();
+        entityManager.getTransaction().commit();
+
+
+
+        /*
+
+         medicament.medicamentCategories = new HashSet<>();
+        medicament.medicamentCategories.add(medicamentCategory);
+        medicament.price = price;
+        medicament.saleCategory =saleCategory;
+        medicament.medicamentInformation = medicamentInformation;
+        medicament.state = state;
+         */
+
+       // entityManager.getTransaction().commit();
+
 
         entityManager.getTransaction().begin();
         Price price = new Price();
         entityManager.persist(price);
         price.seelingPrice = new BigDecimal(sellingPriceField.getText());
         price.buyoutPrice = new BigDecimal(buyoutPriceField.getText());
+        medicament.price = price;
         entityManager.getTransaction().commit();
 
         MedicamentInformation medicamentInformation = new MedicamentInformation();
@@ -97,6 +124,7 @@ public class AddWindowControllerDM implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        medicament.medicamentInformation = medicamentInformation;
         entityManager.getTransaction().commit();
 
         entityManager.getTransaction().begin();
@@ -110,6 +138,7 @@ public class AddWindowControllerDM implements Initializable {
             entityManager.persist(saleCategory);
             saleCategory.title = saleCategoriesField.getText();
         }
+        medicament.saleCategory = saleCategory;
         entityManager.getTransaction().commit();
 
         entityManager.getTransaction().begin();
@@ -123,6 +152,8 @@ public class AddWindowControllerDM implements Initializable {
             entityManager.persist(medicamentCategory);
             medicamentCategory.title =medicamentCategoriesField.getText();
         }
+        medicament.medicamentCategories = new HashSet<>();
+        medicament.medicamentCategories.add(medicamentCategory);
         entityManager.getTransaction().commit();
 
         entityManager.getTransaction().begin();
@@ -136,23 +167,9 @@ public class AddWindowControllerDM implements Initializable {
             entityManager.persist(state);
             state.title = titleField.getText();
         }
-        entityManager.getTransaction().commit();
-
-
-        entityManager.getTransaction().begin();
-        Medicament medicament = new Medicament();
-        entityManager.persist(medicament);
-        medicament.medicamentCategories = new HashSet<>();
-        medicament.medicamentCategories.add(medicamentCategory);
-        medicament.price = price;
-        medicament.saleCategory =saleCategory;
-        medicament.medicamentInformation = medicamentInformation;
-        medicament.title = titleField.getText();
-        medicament.code = codeField.getText();
-        medicament.batch = batchField.getText();
         medicament.state = state;
-
         entityManager.getTransaction().commit();
+
         System.out.println("Added");
         insertedMedicament = medicament;
         titleField.getScene().getWindow().hide();

@@ -226,14 +226,16 @@ public class MainWindowControllerDM implements Initializable {
                         controller.medicamentCategoriesField.setText(medicamentCategory.title);
                 }
             }
-
             controller.medicamentToUpdate = medicament;
 
             stage.setTitle("Update Window");
             stage.setScene(new Scene(root, 355, 414));
             stage.showAndWait();
 
-            updateInformationLabels(medicament);
+            medicaments.remove(medicament);
+            medicaments.add(controller.updated);
+
+            updateInformationLabels(controller.updated);
         } catch (IOException e) {
             e.printStackTrace();
         }
